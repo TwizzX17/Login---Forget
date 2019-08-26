@@ -1,5 +1,5 @@
 h1 {
-
+   
 }
 
 body {
@@ -7,7 +7,7 @@ body {
 }
 
 p {
-
+   
 }
 #nav {
     position: fixed;
@@ -60,13 +60,13 @@ p {
     margin-top: 12px;
     background-color: #3A3B43;
     border-bottom-style: solid;
-    border-bottom-width: 1px;
+    border-bottom-width: 1px; 
     border-bottom-color: white;
 }
 
 .placement-nav{
     padding-right: 12px;
-    padding-left: 12px;
+    padding-left: 12px; 
 }
 
 .main{
@@ -90,10 +90,10 @@ p {
     display: flex;
     flex-direction: row;
     border-bottom-style: solid;
-    border-bottom-width: 1px;
+    border-bottom-width: 1px; 
     border-bottom-color: white;
     margin-top: 30px;;
-
+    
 }
 
 .listbtn {
@@ -116,7 +116,7 @@ p {
     margin-bottom: 10px;
     margin-right: 5px;
     margin-left: 5px;
-
+    
 }
 .search{
     padding-top: 5px;
@@ -139,8 +139,8 @@ p {
     font-size: 20px;
 }
 .title{
-    margin-top: 10px;
-    width: 425px;
+    margin-top: 10px; 
+    width: 425px; 
     padding-right: 200px;
 }
 
@@ -154,7 +154,7 @@ p {
     background-color: #f63737;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.87);
     border-style: solid;
-
+    
     border-color: #eeff00;
     border-color: #76f637;
     border-color: #f63737;
@@ -265,8 +265,8 @@ p {
 
 #forgotpass{
     width: 100px;
-    height: 13px;
-    margin-top: 9px;
+    height: 13px; 
+    margin-top: 9px; 
     margin-bottom: 6px;
     font-size: 8px;
     line-height: 1.38;
@@ -282,5 +282,112 @@ p {
     border-color: #8a91d6;
     border-width: 1px;
     color: white;
+    
+}
 
+#profileset-main {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 940px;
+    margin-top: 110px;
+    font-family:"Segoe UI";    
+}
+
+#profileset-title {
+    margin: auto;
+    text-align: center; 
+    padding-top: 53px;
+    height: 51px;
+    width: 377px;
+    font-size: 36px;
+    line-height: 1.33;
+    color: #bcbccb;
+}
+
+#profile-flexcontainer {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    width: 940px;
+    height: 465px;
+    
+}
+
+.profile-flexitem {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 425px;
+    align-items: center;
+    padding-top: 42px;
+}
+
+.profile-set-structure{
+    margin-bottom: 60px;
+}
+
+.profile-item-titles {
+    width: 230px;
+    height: 23px;
+    font-size: 20px;
+    line-height: 1.35;
+    color: #bcbccb;
+    padding-bottom: 9px;
+}
+
+.profile-set-input {
+    width: 244px;
+    height: 26px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border: solid 1px #3a3b43;
+    border-radius: 3px;
+    background-color: #454650;
+    color: #bcbccb;
+    font-size: 14px;
+    line-height: 1.36;
+    margin-bottom: 7.3px;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.titlecontain {
+    display: flex;
+    flex-direction: row;
+}
+
+#helpimg {
+    width: 25px;
+    height: 25px;
+    padding-top: 3px
+    
+}
+
+#premiummember {
+    background-color: #76f637;
+    height: 26px;
+    width: 244px;
+    box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
+    margin-top: 34px;
+    border-radius: 3px;
+    border: solid 1px #76f637;
+    float: left;
+    margin-bottom: 69px;
+}
+
+#profileset-submit{
+    height: 26px;
+    width: 307px;
+    margin: auto;
+    box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
+    background-color: #8a91d6;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.36;
+    color: #ffffff;
+}
+
+#profileset-submit > p {
+padding-top: 2px;
 }

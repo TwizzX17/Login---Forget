@@ -7,7 +7,7 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <nav id="nav" style="display: none;">
+    <nav id="nav">
         <div class="flexbox-nav">
             <div class="placement-nav">
                 <!-- make img absolute to center correctly -->
@@ -27,8 +27,52 @@
            </div>
         </div>
     </nav>
-
-    <div style="display: none;" id="Dashboard-main" class="main">
+    
+    <div id="profileset-main">
+        <div id="profileset-title">Change Profile Settings</div>
+        <div id=profile-flexcontainer>
+            <div class="profile-flexitem">
+                <div class="profile-set-structure">
+                    <div class="titlecontain">
+                        <div class="profile-item-titles">Account Plan</div>
+                        <img id="helpimg" src="assets/help.svg">
+                    </div>
+                    <input class="profile-set-input" type="text" placeholder="Unauthorized">
+                </div>
+                <div>
+                    <div class="profile-item-titles">E-mail*</div>
+                    <input class="profile-set-input" type="text">
+                    <div class="profile-item-titles">First Name</div>
+                    <input class="profile-set-input" type="text">
+                    <div class="profile-item-titles">Last Name</div>
+                    <input class="profile-set-input" type="text">
+                    <div class="profile-item-titles">Country</div>
+                    <input class="profile-set-input" type="text">
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="profile-flexitem">
+                <input type="button" id="premiummember" value="Premium Member">
+                <div>
+                    <div class="profile-item-titles">City</div>
+                    <input class="profile-set-input" type="text">
+                    <div class="profile-item-titles">Street</div>
+                    <input class="profile-set-input" type="text">
+                    <div class="profile-item-titles">Zip</div>
+                    <input class="profile-set-input" type="text">
+                    <div class="profile-item-titles">Phone</div>
+                    <input class="profile-set-input" type="text">
+                </div>
+            </div>
+        </div>
+        <div id="profileset-submit">Save Changes</div>
+    </div>
+    
+    
+ <!--   <div style="display: none;" id="Dashboard-main" class="main">
             <div class="search">
                 <input type="text" placeholder="Search...">
             </div>
@@ -112,6 +156,9 @@
             </ul>
     </div>
 
+
+ -->
+    <!--
     <div id="login-main">
         <div>
             <div>
@@ -131,5 +178,6 @@
             </div>
         </div>
     </div>
+-->
 </body>
 </html>
