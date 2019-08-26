@@ -1,5 +1,5 @@
 h1 {
-   
+
 }
 
 body {
@@ -7,7 +7,7 @@ body {
 }
 
 p {
-   
+
 }
 #nav {
     position: fixed;
@@ -60,13 +60,13 @@ p {
     margin-top: 12px;
     background-color: #3A3B43;
     border-bottom-style: solid;
-    border-bottom-width: 1px; 
+    border-bottom-width: 1px;
     border-bottom-color: white;
 }
 
 .placement-nav{
     padding-right: 12px;
-    padding-left: 12px; 
+    padding-left: 12px;
 }
 
 .main{
@@ -90,10 +90,10 @@ p {
     display: flex;
     flex-direction: row;
     border-bottom-style: solid;
-    border-bottom-width: 1px; 
+    border-bottom-width: 1px;
     border-bottom-color: white;
     margin-top: 30px;;
-    
+
 }
 
 .listbtn {
@@ -116,7 +116,7 @@ p {
     margin-bottom: 10px;
     margin-right: 5px;
     margin-left: 5px;
-    
+
 }
 .search{
     padding-top: 5px;
@@ -139,8 +139,8 @@ p {
     font-size: 20px;
 }
 .title{
-    margin-top: 10px; 
-    width: 425px; 
+    margin-top: 10px;
+    width: 425px;
     padding-right: 200px;
 }
 
@@ -154,7 +154,7 @@ p {
     background-color: #f63737;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.87);
     border-style: solid;
-    
+
     border-color: #eeff00;
     border-color: #76f637;
     border-color: #f63737;
@@ -167,4 +167,120 @@ p {
 
 .retrievepassword {
     width: 180px;
+}
+
+#login-main {
+    position: relative;
+    top: 109px;
+    right: 0;
+    left: 0;
+    width: 400px;
+    height: 300px;
+    margin: auto;
+    font-family:"Segoe UI";
+}
+
+#login-logo {
+    width: 169px;
+    height: 163px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#login-title {
+    width: 405px;
+    height: 42px;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.87);
+    font-size: 24px;
+    font-weight: normal;
+    font-style: italic;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: center;
+    color: #bcbccb;
+    margin-top: 24px;
+}
+
+#loginbox{
+    width: 360px;
+    height: 300px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.37);
+    background: #4f515d;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 24px;
+    margin-bottom: 100px;
+    border-radius: 10px;
+}
+
+#boxtitle {
+    width: 103px;
+    height: 28px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    color: #bcbccb;
+    padding-top: 19px;
+    text-align: center;
+}
+#formsandtitles{
+    margin-left: 26px;
+    margin-right: 26px;
+}
+
+.formtitles {
+    height: 25px;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #bcbccb;
+}
+
+.loginforms{
+    width: 307px;
+    height: 26px;
+    padding-right: 2%;
+    padding-left: 2%;
+    box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
+    border: solid 1px #3a3b43;
+    background-color: #454650;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: #bcbccb;
+    border-radius: 5px;
+}
+
+#forgotpass{
+    width: 100px;
+    height: 13px;
+    margin-top: 9px;
+    margin-bottom: 6px;
+    font-size: 8px;
+    line-height: 1.38;
+    color: #7a7af2;
+}
+
+#loginsubmit {
+    width: 307px;
+    height: 26px;
+    box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
+    background-color: #8a91d6;
+    border-radius: 6px;
+    border-color: #8a91d6;
+    border-width: 1px;
+    color: white;
+
 }
