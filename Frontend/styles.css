@@ -1,0 +1,170 @@
+h1 {
+   
+}
+
+body {
+    background-color: #3A3B43;
+}
+
+p {
+   
+}
+#nav {
+    position: fixed;
+    height: 105px;
+    width: 950px;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    background-color: #3A3B43;
+}
+.navbtn{
+    background-color: rgba(86, 88, 100, 0.87);
+    width: 181.8px;
+    height: 40px;
+    text-align: center;
+    padding: 0;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.37);
+    border: none;
+    border-radius: 7px;
+    color: #bcbccb;
+    font-family:"Segoe UI";
+    src: local("assets/Segoe UI");
+    font-size: 20px;
+    padding-bottom: 2px;
+    margin-right: 10px;
+    margin-left: 10px;;;
+}
+
+.defaulttext {
+
+    color: #bcbccb;
+    border: none;
+    color: #bcbccb;
+    font-family:"Segoe UI";
+    font-size: 20px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.87);
+}
+
+.flexbox-nav{
+    width: 940px;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    top: 50%;
+    bottom: 50%;
+    margin-top: 12px;
+    background-color: #3A3B43;
+    border-bottom-style: solid;
+    border-bottom-width: 1px; 
+    border-bottom-color: white;
+}
+
+.placement-nav{
+    padding-right: 12px;
+    padding-left: 12px; 
+}
+
+.main{
+    width: 940px;
+    margin: auto;
+    margin-top: 104px;
+}
+
+.main-title{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: -25px
+}
+
+.ullist {
+    padding-left: 0;
+}
+
+.listelement {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    border-bottom-style: solid;
+    border-bottom-width: 1px; 
+    border-bottom-color: white;
+    margin-top: 30px;;
+    
+}
+
+.listbtn {
+    background-color: rgba(86, 88, 100, 0.87);
+    width: 181.8px;
+    height: 32px;
+    text-align: center;
+    padding: 0;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.37);
+    border: none;
+    border-radius: 7px;
+    color: #bcbccb;
+    font-family:"Segoe UI";
+    font-size: 18px;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    padding-top: 7px;
+    padding-bottom: -10px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    
+}
+.search{
+    padding-top: 5px;
+    margin-bottom: 15px;
+}
+
+.liststatus{
+    margin-right: 575px;
+}
+
+.indicatorstatus{
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    border: solid 1px #bcbccb;
+    border-radius: 20px;
+    padding-top: 3px;
+    color: #bcbccb;
+    line-height: 20px;
+    font-size: 20px;
+}
+.title{
+    margin-top: 10px; 
+    width: 425px; 
+    padding-right: 200px;
+}
+
+.indicator{
+    margin-top: 10px;
+    margin-right: 7px;
+    width: 16px;
+    height: 16px;
+    background-color: #eeff00;
+    background-color: #76f637;
+    background-color: #f63737;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.87);
+    border-style: solid;
+    
+    border-color: #eeff00;
+    border-color: #76f637;
+    border-color: #f63737;
+    border-radius: 20px;
+}
+
+.edit-li{
+    width: 89.9px;
+}
+
+.retrievepassword {
+    width: 180px;
+}
