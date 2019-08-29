@@ -9,8 +9,20 @@ namespace SecureApp
 {
     public class RouteConfig
     {
+
+
         public static void RegisterRoutes(RouteCollection routes)
         {
+
+            //This Sections removes the /Home/ from the URL
+            routes.MapRoute(
+                "OnlyAction",
+                "{action}",
+                new { controller = "Home", action = "Index" }
+            );
+
+            
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(

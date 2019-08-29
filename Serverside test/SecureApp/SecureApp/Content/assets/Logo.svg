@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="95" height="92" viewBox="0 0 95 92">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #76f637;
+      }
+
+      .cls-2 {
+        font-size: 14px;
+        font-family: Rockwell;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        stroke: #fff;
+      }
+
+      .cls-4 {
+        filter: url(#Ellipse_2);
+      }
+    </style>
+    <filter id="Ellipse_2" x="0" y="0" width="95" height="92" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.871"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Logo" transform="translate(-456 -3)">
+    <g class="cls-4" transform="matrix(1, 0, 0, 1, 456, 3)">
+      <ellipse id="Ellipse_2-2" data-name="Ellipse 2" class="cls-1" cx="38.5" cy="37" rx="38.5" ry="37" transform="translate(9 6)"/>
+    </g>
+    <circle id="Ellipse_3" data-name="Ellipse 3" cx="11.5" cy="11.5" r="11.5" transform="translate(492 21)"/>
+    <text id="Secure.me" class="cls-2" transform="translate(470 47)"><tspan x="0" y="13">Secure.me</tspan></text>
+    <path id="Path_111" data-name="Path 111" class="cls-3" d="M2489.087,37.768c4.409.058,4.641.076,4.641.076l-.508-2.616-.478-2.391.665-.555.322-.373.194-.627.094-.635-.094-.88-.266-.7-.437-.675-.478-.422a2.156,2.156,0,0,0-1.3-.456,3.053,3.053,0,0,0-1.481.456l-.519.516-.351.581-.26.7-.093.88.093.635.26.627.351.467.519.462Z" transform="translate(-1988 -1)"/>
+  </g>
+</svg>

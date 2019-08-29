@@ -12,6 +12,16 @@ namespace SecureApp.Controllers
     {
 
         private const string key = "osiuvhnr09f7342j";
+
+
+        public ActionResult Index()
+        {
+            //Are you logged in? if not, redirect to /Login
+            //Remember me function?
+
+
+            return View();
+        }
         // GET: Home
         public ActionResult Login()
         {
@@ -21,10 +31,18 @@ namespace SecureApp.Controllers
 
 
 
-            //This method will be HttpPost. In this method, we will first verify user-provided 
-            //credential from the database.Then if the user is valid, then we will generate 
-            //Two Factor authentication setup code for use in the Google Authenticator mobile
-            //app for setup account.
+        public ActionResult Dashboard()
+        {
+            //Display of your passwords
+
+
+            return View();
+        }
+
+        //This method will be HttpPost. In this method, we will first verify user-provided 
+        //credential from the database.Then if the user is valid, then we will generate 
+        //Two Factor authentication setup code for use in the Google Authenticator mobile
+        //app for setup account.
 
         [HttpPost]
         public ActionResult Login(LoginModel login)
