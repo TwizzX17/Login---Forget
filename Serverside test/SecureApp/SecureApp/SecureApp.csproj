@@ -91,6 +91,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\banner-frontpage.jpg" />
     <Content Include="Content\assets\Edit.svg" />
     <Content Include="Content\assets\help.svg" />
     <Content Include="Content\assets\Logo.svg" />
