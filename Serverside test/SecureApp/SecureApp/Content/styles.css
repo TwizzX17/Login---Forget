@@ -79,7 +79,7 @@ p {
 .main-title {
     display: flex;
     flex-direction: row;
-    margin-bottom: -25px
+    margin-bottom: -25px;
 }
 
 #search-li {
@@ -90,6 +90,8 @@ p {
     background-color: #454650;
     color: #bcbccb;
     margin-right: 365px;
+    padding-left: 5px;
+    margin-left: 7px;
 }
 
 .ullist {
@@ -104,7 +106,7 @@ p {
     border-bottom-width: 1px;
     border-bottom-color: white;
     margin-top: 30px;
-    ;
+    padding-left: 10px;
 }
 
 .listbtn {
@@ -137,6 +139,7 @@ p {
 .liststatus {
     padding-top: 34px;
     padding-bottom: 14px;
+    margin-left: 7px;
 }
 
 .indicatorstatus {
@@ -240,7 +243,7 @@ p {
     line-height: 1.33;
     letter-spacing: normal;
     color: #bcbccb;
-    padding-top: 19px;
+    padding-top: 9px;
     text-align: center;
 }
 
@@ -286,8 +289,8 @@ p {
     color: #7a7af2;
 }
 
-#loginsubmit {
-    width: 307px;
+.loginsubmit {
+    width: 140px;
     height: 26px;
     box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
     background-color: #8a91d6;
@@ -295,6 +298,10 @@ p {
     border-color: #8a91d6;
     border-width: 1px;
     color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6px;
 }
 
 #profileset-main {
@@ -408,7 +415,7 @@ p {
 
 #f-nav {
     height: 123px;
-    width: % position: fixed;
+    width: 100%; 
     text-align: center;
 }
 
@@ -435,6 +442,11 @@ p {
         color: #bcbccb;
         margin: 0 10px 0 10px
     }
+
+#f-nav a{
+    text-decoration: none;
+    color: inherit;
+}
 
     #f-nav img {
         height: 90px;

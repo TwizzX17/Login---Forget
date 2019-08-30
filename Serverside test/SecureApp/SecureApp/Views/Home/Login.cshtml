@@ -53,15 +53,42 @@ else
         </div>
         <div id="login-title">~ Your one secure way to everything ~</div>
         <div id="loginbox">
-            <div id="boxtitle">Sign In</div>
-            <div id="formsandtitles">
-                <div class="formtitles">E-mail</div>
-                <input class="loginforms" type="text">
-                <div style="margin-top: 24px;" class="formtitles">Password</div>
-                <input class="loginforms" type="Password">
-                <div id="forgotpass">Forgot password?</div>
-                <input id="loginsubmit" type="button" value="Login">
-            </div>
+            @if (ViewBag.Status == null || !ViewBag.Status)
+            {
+                <div id="boxtitle">Sign In</div>
+                <div class="formtitles" style="display: block; margin-right: auto; margin-left: auto;text-align:center; color: red;">@ViewBag.Message</div>
+
+                <div id="formsandtitles">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="formtitles">E-mail</div>
+                        <!--<input class="loginforms" type="text">-->
+                        @Html.TextBoxFor(a => a.UserName, new { @class = "loginforms", type = "text" })
+                        <div style="margin-top: 24px;" class="formtitles">Password</div>
+                        <!--<input class="loginforms" type="Password">-->
+                        @Html.TextBoxFor(a => a.Password, new { @class = "loginforms", type = "password" })
+                        <div id="forgotpass">Forgot password?</div>
+                        <input class="loginsubmit" type="submit" value="Login">
+                    }
+                </div>
+            }
+            else
+            {   <div id="boxtitle">2FA</div>
+                <!-- <div>@ViewBag.Message</div> -->
+                <div>
+                    <img style="display: block; width: 135px; height: 135px; margin-left: auto; margin-right: auto;" src="@ViewBag.BarcodeImageUrl" />
+                </div>
+                <div class="formtitles" style="text-align: center; padding-bottom: 17px;">
+                    Manual Setup Code : @ViewBag.SetupCode
+                </div>
+                <div>
+                    @using (Html.BeginForm("TwoFactorAuthenticate", "Home", FormMethod.Post))
+                    {
+                        <input type="text" name="CodeDigit" class="loginforms" />
+                        <input type="submit" class="loginsubmit"/>
+                    }
+                </div>
+            }
         </div>
     </div>
 </div>
