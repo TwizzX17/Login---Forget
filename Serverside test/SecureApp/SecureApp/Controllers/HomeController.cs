@@ -65,7 +65,7 @@ namespace SecureApp.Controllers
             }
             else
             {
-                message = "Please Enter the Valid Credential!";
+                message = "The entered credentials are invalid";
             }
             ViewBag.Message = message;
             ViewBag.Status = status;
@@ -95,7 +95,7 @@ namespace SecureApp.Controllers
             if (isValid)
             {
                 Session["IsValidTwoFactorAuthentication"] = true;
-                return RedirectToAction("UserProfile", "Home");
+                return RedirectToAction("Dashboard", "Home");
             }
             return RedirectToAction("Login", "Home");
         }
