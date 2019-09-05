@@ -38,10 +38,20 @@ p {
     padding-bottom: 2px;
     margin-right: 10px;
     margin-left: 10px;
-    ;
-    ;
 }
 
+.navbtn1 {
+    background-color: #f63737;
+    color: #f1f1f1;
+}
+
+.navbtn2 {
+    width: 167.8px;
+}
+
+.navbtn3 {
+    width: 104.4px;
+}
 .defaulttext {
     color: #bcbccb;
     border: none;
@@ -70,11 +80,100 @@ p {
     padding-left: 12px;
 }
 
+.placement-nav-btn {
+    margin-top: 20px;
+}
+
+.placement-nav-logo {
+    position: relative;
+    height: 90px;
+}
+
 .main {
     width: 940px;
     margin: auto;
     margin-top: 104px;
 }
+
+#AddPasswordDiv {
+    position: relative;
+}
+
+
+
+.AddPasswordBox {
+    position: fixed;
+    background: #4f515d;
+    border: 4px solid #4f515d;
+    width: 408px;
+    height: 328.7px;
+    top: 250px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px #3a3b43;
+}
+
+.PaswordBoxOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.Addpasswordcontent {
+    padding: 10px ;
+    text-align: center;
+    font-family: "Segoe UI";
+    color: #bcbccb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 50% 0 50%;
+}
+
+.Addpasswordcontent h1 {
+    padding-top: 7px;
+    width: 358px;
+    height: 45px;
+    font-size: 18px;
+    line-height: 1.33;
+    font-weight: normal;
+}
+.Addpasswordcontent p {
+    width: 358px;
+    height: 20px;
+    font-size: 14px;
+    line-height: 1.36;
+    font-weight: normal;
+    text-align: left;
+}
+.Addpasswordcontent input {
+    width: 358px;
+    height: 25px;
+    font-size: 14px;
+    line-height: 1.33;
+    font-weight: normal;
+    box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
+    border: solid 1px #3a3b43;
+    background-color: #454650;
+}
+.Addpasswordcontent button {
+    width: 307px;
+    height: 26px;
+    font-size: 14px;
+    line-height: 1.33;
+    font-weight: normal;
+    box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
+    border: solid 1px #3a3b43;
+    color: #ffffff;
+    background-color: #8a91d6;
+    margin-top: 25px;
+}
+
 
 .main-title {
     display: flex;
@@ -262,6 +361,18 @@ p {
     letter-spacing: normal;
     text-align: left;
     color: #bcbccb;
+}
+
+.formtitles1 {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    color: red;
+}
+
+.formtitles2 {
+    margin-top: 24px;
 }
 
 .loginforms {

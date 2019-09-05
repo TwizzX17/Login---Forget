@@ -2,6 +2,7 @@
 import bannerfrontpage from '../assets/banner-frontpage.jpg';
 import logo from '../assets/Logo.svg';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
 
@@ -13,10 +14,10 @@ class Home extends Component {
                     <div>
                         <ul>
                             <li>DataBreaches</li>
-                            <li>Home</li>
-                            <img src={logo} />
+                            <Link to="/"><li>Home</li></Link>
+                            <Link to="/"><img src={logo} /></Link>
                             <li>About us</li>
-                            <li>Login To App</li>
+                            <Link to="/login"><li>Login To App</li></Link>
                         </ul>
                     </div>
                 </nav>
