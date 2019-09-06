@@ -5,6 +5,7 @@ import "./Style.css";
 import NotFound from './components/notfound';
 import Home from './components/Home';
 import Login from './components/Login';
+import CreateAccount from './components/Create-Account';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
 /*
@@ -18,6 +19,7 @@ const routing = (
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/Login" component={Login} />
+                <Route path="/Create-account" component={CreateAccount} />
                 <Route exact path="/Dashboard" component={Dashboard} />
                 <Route exact path="/Dashboard/Profile" component={Profile} />
                 <Route component={NotFound} />

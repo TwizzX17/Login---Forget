@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Serverside test",
-    "\\Serverside test\\SecureMe"
+    "\\Serverside test\\SecureApp"
   ],
-  "SelectedNode": "\\Serverside test",
+  "SelectedNode": "\\Serverside test\\SecureApp\\SecureApp.sln",
   "PreviewInSolutionExplorer": false
 }
