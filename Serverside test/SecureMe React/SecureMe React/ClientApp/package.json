@@ -1,0 +1,41 @@
+{
+  "name": "SecureMe_React",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "eslint": "^6.3.0",
+    "react": "^16.9.0",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.9.0",
+    "react-floater": "^0.6.5",
+    "react-joyride": "^2.1.1",
+    "react-jss": "^8.6.1",
+    "react-modal": "^3.10.1",
+    "react-responsive-modal": "^4.0.1",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "^3.1.1",
+    "rimraf": "^2.7.1",
+    "typescript": "^3.6.2"
+  },
+  "scripts": {
+    "start": "rimraf ./build && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
