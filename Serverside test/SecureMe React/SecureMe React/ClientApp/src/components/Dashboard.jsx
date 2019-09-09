@@ -12,7 +12,8 @@ class Dashboard extends React.Component {
         //Sets  the value false as default
         //state can contain properties
         this.state = {
-            open: false,
+            openP: false,
+            openA: false
         };
     }
 
@@ -24,12 +25,21 @@ class Dashboard extends React.Component {
     //setState method is best practice because it calls the render method 
     //and all other lifecycle methods.
     onOpenAddPassword = () => {
-        this.setState({ open: true });
+        this.setState({ openP: true });
         console.log(this.setState)
     }
 
     onCloseAddPassword = () => {
-        this.setState({ open: false });
+        this.setState({ openP: false });
+    }
+
+    onOpenAuthenticate = () => {
+        this.setState({ openA: true });
+        console.log(this.setState)
+    }
+
+    onCloseAuthenticate = () => {
+        this.setState({ openA: false });
     }
 
     render() {
@@ -41,7 +51,24 @@ class Dashboard extends React.Component {
                             <Link to="/Dashboard"><img class="placement-nav-logo" src={logo} /></Link>
                          </div>
                         <div class="placement-nav placement-nav-btn">
-                            <input id="auth" class="navbtn navbtn1" type="button" value="Authenticate"/>
+                            <input id="auth" class="navbtn navbtn1" onClick={this.onOpenAuthenticate} type="button" value="Authenticate" />
+                            <ReactModal
+                                isOpen={this.state.openA}
+                                contentLabel="Minimal Modal Example"
+                                className="AddPasswordBox"
+                                overlayClassName="PaswordBoxOverlay"
+                                onRequestClose={this.onCloseAuthenticate}>
+
+                                <div class="Addpasswordcontent">
+                                    <h1>Enter the information for your site in the fields below - then click generate!</h1>
+                                    <p>Label - E. G. Facebook John</p>
+                                    <input type="text" />
+                                    <p>Url - E. g. https://www.facebook.com</p>
+                                    <input type="text" />
+                                    <button onClick={this.onCloseAddPassword}>Generate Password</button>
+                                </div>
+
+                            </ReactModal>
                         </div>
                         <div class="placement-nav placement-nav-btn">
                             <Link to="/Dashboard/Profile"><input class="navbtn" type="button" value="Profile Settings"/></Link>
@@ -49,7 +76,7 @@ class Dashboard extends React.Component {
                         <div className="PasswordTar" id="AddPasswordDiv" class="placement-nav placement-nav-btn" type="button">
                             <input class="navbtn navbtn2" onClick={this.onOpenAddPassword} type="button" value="Add Password" />
                             <ReactModal
-                                isOpen={this.state.open}
+                                isOpen={this.state.openP}
                                 contentLabel="Minimal Modal Example"
                                 className="AddPasswordBox"
                                 overlayClassName="PaswordBoxOverlay"

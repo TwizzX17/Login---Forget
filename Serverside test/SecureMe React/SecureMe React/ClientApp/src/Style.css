@@ -321,9 +321,22 @@ a {
     margin-top: 24px;
 }
 
-#loginbox {
+.loginbox {
     width: 360px;
     height: 300px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.37);
+    background: #4f515d;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 24px;
+    margin-bottom: 100px;
+    border-radius: 10px;
+}
+
+.forgotpassbox {
+    height: 200px;
+    width: 360px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.37);
     background: #4f515d;
     display: block;
@@ -349,7 +362,7 @@ a {
 }
 
 #boxtitle {
-    width: 103px;
+    width: 175px;
     height: 28px;
     margin-left: auto;
     margin-right: auto;
@@ -453,6 +466,9 @@ a {
     margin-top: 6px;
 }
 
+.Createsubmit {
+    margin-top: 25px;
+}
 #profileset-main {
     display: block;
     margin-left: auto;
@@ -545,20 +561,21 @@ a {
 }
 
 #profileset-submit {
-    height: 26px;
+    height: 28px;
     width: 307px;
+    display: block;
     margin: auto;
     box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
     background-color: #8a91d6;
-    text-align: center;
+    border: 2px solid #8a91d6;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
     font-size: 14px;
     line-height: 1.36;
     color: #ffffff;
 }
 
-    #profileset-submit > p {
-        padding-top: 2px;
-    }
 
 
 

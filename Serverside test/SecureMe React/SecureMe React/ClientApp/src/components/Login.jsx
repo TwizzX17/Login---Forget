@@ -13,9 +13,9 @@ class Login extends React.Component {
                         <img id="login-logo" src={logo}/>
                     </div>
                         <div id="login-title">~ Your one secure way to everything ~</div>
-                        <div id="loginbox">
+                        <div class="loginbox">
                             <div id="boxtitle">Sign In</div>
-                        <div class="formtitles formtitles1">Infomation DIV</div>
+                        <div class="formtitles formtitles1"></div>
                             <div id="formsandtitles">
                                 <div class="formtitles">E-mail</div>
                                 <input class="loginforms" type="text"/>

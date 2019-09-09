@@ -15,7 +15,7 @@ class Login extends React.Component {
                         <div id="login-title">~ Your one secure way to everything ~</div>
                         <div id="createacc">
                             <div id="boxtitle">Create Account</div>
-                        <div class="formtitles formtitles1">Infomation DIV</div>
+                        <div class="formtitles formtitles1"></div>
                             <div id="formsandtitles">
                                 <div class="formtitles">E-mail</div>
                                 <input class="loginforms" type="text"/>
@@ -24,7 +24,7 @@ class Login extends React.Component {
                                 <div class="formtitles formtitles2">Confirm Password</div>
                                 <input class="loginforms" type="Password" />
                                 
-                                <input class="loginsubmit" type="submit" value="Create Account" />
+                            <input class="loginsubmit Createsubmit" type="submit" value="Create Account" />
                             </div>
 
 
