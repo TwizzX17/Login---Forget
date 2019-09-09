@@ -42,6 +42,25 @@ class Dashboard extends React.Component {
         this.setState({ openA: false });
     }
 
+
+    filterList = () => {
+        var input, filter, table, li, p, i, txtValue;
+        input = document.getElementById("search-li");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("ullist");
+        li = table.getElementsByTagName("li")
+
+        for (i = 0; i < li.length; i++) {
+            p = li[i].getElementsByTagName("p")[0];
+            txtValue = p.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
     render() {
         return (
             <div>
@@ -103,99 +122,57 @@ class Dashboard extends React.Component {
                     <div>
                         <div class="liststatus defaulttext">Search Sitename / App</div>
                         <div class="main-title">
-                            <input id="search-li" type="text" placeholder="Search..."/>
+                            <input id="search-li" type="text" placeholder="Search..." onKeyUp={this.filterList} />
                             <img src={Help}/>
                         </div>
                     </div>
-                    <ul class="ullist">
+                    <ul id="ullist">
                         <li class="listelement">
-                            <div class="title defaulttext">Facebook</div>
+                            <p class="title defaulttext">Facebook</p>
                             <div class="indicator"></div>
                             <div class="edit-li listbtn">Edit<img src={Edit}/></div>
                             <div class="retrievepassword listbtn">Retrieve Password</div>
                         </li>
                         <li class="listelement">
-                            <div class="title defaulttext">Google</div>
+                            <p class="title defaulttext">Google</p>
                             <div class="indicator"></div>
                             <div class="edit-li listbtn">Edit<img src={Edit}/></div>
                             <div class="retrievepassword listbtn">Retrieve Password</div>
                         </li>
                         <li class="listelement">
-                            <div class="title defaulttext">Twitch</div>
+                            <p class="title defaulttext">Twitch</p>
                             <div class="indicator"></div>
                             <div class="edit-li listbtn">Edit<img src={Edit}/></div>
                             <div class="retrievepassword listbtn">Retrieve Password</div>
                         </li>
                         <li class="listelement">
-                            <div class="title defaulttext">Amazon</div>
+                            <p class="title defaulttext">Amazon</p>
                             <div class="indicator"></div>
                             <div class="edit-li listbtn">Edit<img src={Edit}/></div>
                             <div class="retrievepassword listbtn">Retrieve Password</div>
                         </li>
                         <li class="listelement">
-                            <div class="title defaulttext">Reddit</div>
+                            <p class="title defaulttext">Reddit</p>
                             <div class="indicator"></div>
                             <div class="edit-li listbtn">Edit<img src={Edit}/></div>
                             <div class="retrievepassword listbtn">Retrieve Password</div>
                         </li>
                         <li class="listelement">
-                            <div class="title defaulttext">Steam</div>
+                            <p class="title defaulttext">Steam</p>
                             <div class="indicator"></div>
                             <div class="edit-li listbtn">Edit<img src={Edit}/></div>
                             <div class="retrievepassword listbtn">Retrieve Password</div>
                         </li>
                         <li class="listelement">
-                            <div class="title defaulttext">Brazzers</div>
+                            <p class="title defaulttext">Brazzers</p>
                             <div class="indicator"></div>
                             <div class="edit-li listbtn">Edit<img src={Edit}/></div>
                             <div class="retrievepassword listbtn">Retrieve Password</div>
                         </li>
                         <li class="listelement">
-                            <div class="title defaulttext">Facebook</div>
+                            <p class="title defaulttext">Facebook</p>
                             <div class="indicator"></div>
                             <div class="edit-li listbtn">Edit<img src={Edit}/></div>
-                            <div class="retrievepassword listbtn">Retrieve Password</div>
-                        </li>
-                        <li class="listelement">
-                            <div class="title defaulttext">Facebook</div>
-                            <div class="indicator"></div>
-                            <div class="edit-li listbtn">Edit<img src={Edit}/></div>
-                            <div class="retrievepassword listbtn">Retrieve Password</div>
-                        </li>
-                        <li class="listelement">
-                            <div class="title defaulttext">Facebook</div>
-                            <div class="indicator"></div>
-                            <div class="edit-li listbtn">Edit<img src={Edit} /></div>
-                            <div class="retrievepassword listbtn">Retrieve Password</div>
-                        </li>
-                        <li class="listelement">
-                            <div class="title defaulttext">Facebook</div>
-                            <div class="indicator"></div>
-                            <div class="edit-li listbtn">Edit<img src={Edit} /></div>
-                            <div class="retrievepassword listbtn">Retrieve Password</div>
-                        </li>
-                        <li class="listelement">
-                            <div class="title defaulttext">Facebook</div>
-                            <div class="indicator"></div>
-                            <div class="edit-li listbtn">Edit<img src={Edit} /></div>
-                            <div class="retrievepassword listbtn">Retrieve Password</div>
-                        </li>
-                        <li class="listelement">
-                            <div class="title defaulttext">Facebook</div>
-                            <div class="indicator"></div>
-                            <div class="edit-li listbtn">Edit<img src={Edit} /></div>
-                            <div class="retrievepassword listbtn">Retrieve Password</div>
-                        </li>
-                        <li class="listelement">
-                            <div class="title defaulttext">Facebook</div>
-                            <div class="indicator"></div>
-                            <div class="edit-li listbtn">Edit<img src={Edit} /></div>
-                            <div class="retrievepassword listbtn">Retrieve Password</div>
-                        </li>
-                        <li class="listelement">
-                            <div class="title defaulttext">Facebook</div>
-                            <div class="indicator"></div>
-                            <div class="edit-li listbtn">Edit<img src={Edit} /></div>
                             <div class="retrievepassword listbtn">Retrieve Password</div>
                         </li>
                     </ul>
