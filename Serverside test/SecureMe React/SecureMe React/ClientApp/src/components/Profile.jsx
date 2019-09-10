@@ -1,6 +1,6 @@
 ﻿import React from 'react'
 import ReactModal from "react-modal";
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../assets/Logo.svg';
 import Help from '../assets/help.svg';
 
@@ -29,6 +29,20 @@ class Login extends React.Component {
 
     onCloseAddPassword = () => {
         this.setState({ openP: false });
+
+        const lvalue = document.getElementById("LabelId").value;
+        const uvalue = document.getElementById("DomaneId").value;
+        fetch('/dashboard/add-password', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ label: lvalue, url: uvalue }),
+        })
+            .then(response => response.json()) // response.json() returns a promise
+            .then((response) => {
+                console.log(response)
+            });
     }
 
     onOpenAuthenticate = () => {
@@ -38,6 +52,19 @@ class Login extends React.Component {
 
     onCloseAuthenticate = () => {
         this.setState({ openA: false });
+
+        const avalue = document.getElementById("AuthCode").value;
+        fetch('/dashboard/2fa', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ submittednumber: avalue }),
+        })
+            .then(response => response.json()) // response.json() returns a promise
+            .then((response) => {
+                console.log(response)
+            });
     }
     render() {
         return (
@@ -45,12 +72,12 @@ class Login extends React.Component {
 
             <div>
                 <nav id="nav">
-                    <div class="flexbox-nav">
-                        <div class="placement-nav">
-                            <Link to="/Dashboard"><img class="placement-nav-logo" src={logo} /></Link>
+                    <div className="flexbox-nav">
+                        <div className="placement-nav">
+                            <Link to="/Dashboard"><img className="placement-nav-logo" alt="Logo" src={logo} /></Link>
                         </div>
-                        <div class="placement-nav placement-nav-btn">
-                            <input id="auth" class="navbtn navbtn1" onClick={this.onOpenAuthenticate} type="button" value="Authenticate" />
+                        <div className="placement-nav placement-nav-btn">
+                            <input id="auth" className="navbtn navbtn1" onClick={this.onOpenAuthenticate} type="button" value="Authenticate" />
                             <ReactModal
                                 isOpen={this.state.openA}
                                 contentLabel="Minimal Modal Example"
@@ -59,11 +86,10 @@ class Login extends React.Component {
                                 onRequestClose={this.onCloseAuthenticate}>
 
                                 <div class="Addpasswordcontent">
-                                    <h1>Enter the information for your site in the fields below - then click generate!</h1>
-                                    <p>Label - E. G. Facebook John</p>
-                                    <input type="text" />
-                                    <p>Url - E. g. https://www.facebook.com</p>
-                                    <input type="text" />
+                                    <h1>Two Factor Authentication</h1>
+                                    <p>QR Code</p>
+                                    <p>Enter code</p>
+                                    <input id="AuthCode" type="text" />
                                     <button onClick={this.onCloseAddPassword}>Generate Password</button>
                                 </div>
 
@@ -84,9 +110,9 @@ class Login extends React.Component {
                                 <div class="Addpasswordcontent">
                                     <h1>Enter the information for your site in the fields below - then click generate!</h1>
                                     <p>Label - E. G. Facebook John</p>
-                                    <input type="text" />
+                                    <input id="LabelId" type="text" />
                                     <p>Url - E. g. https://www.facebook.com</p>
-                                    <input type="text" />
+                                    <input id="DomaneId" type="text" />
                                     <button onClick={this.onCloseAddPassword}>Generate Password</button>
                                 </div>
 
@@ -97,6 +123,7 @@ class Login extends React.Component {
                         </div>
                     </div>
                 </nav>
+
                 <div id="profileset-main">
                     <div id="profileset-title">Change Profile Settings</div>
                     <div id="profile-flexcontainer">
@@ -104,7 +131,7 @@ class Login extends React.Component {
                             <div class="profile-set-structure">
                                 <div class="titlecontain">
                                     <div class="profile-item-titles">Account Plan</div>
-                                    <img id="helpimg" src={Help}/>
+                                    <img id="helpimg" alt="Help" src={Help}/>
                                 </div>
                                 <input class="profile-set-input" type="text" placeholder="Unauthorized"/>
                             </div>

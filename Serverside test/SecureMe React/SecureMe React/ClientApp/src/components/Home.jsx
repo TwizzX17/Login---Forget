@@ -1,7 +1,6 @@
 ﻿import React, { Component } from "react";
 import bannerfrontpage from '../assets/banner-frontpage.jpg';
 import logo from '../assets/Logo.svg';
-import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 
 class Home extends Component {
@@ -15,7 +14,7 @@ class Home extends Component {
                         <ul>
                             <li>DataBreaches</li>
                             <Link to="/"><li>Home</li></Link>
-                            <Link to="/"><img src={logo} /></Link>
+                            <Link to="/"><img alt="logo" src={logo} /></Link>
                             <li>About us</li>
                             <Link to="/login"><li>Login To App</li></Link>
                         </ul>
@@ -23,7 +22,7 @@ class Home extends Component {
                 </nav>
                 <div>
                     <div id="banner">
-                        <img src={bannerfrontpage} />
+                        <img alt="banner" src={bannerfrontpage} />
                         <div id="txtoverlay">
                             <h1>Inspirational Text: Wow!</h1>
                             <p>- Exquisite exquisiteness!<br />- Expertly Expertise!<br />- Securest Security!<br />- We're simply the bestest of the best!</p>
