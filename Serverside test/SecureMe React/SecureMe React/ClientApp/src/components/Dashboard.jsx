@@ -119,6 +119,15 @@ class Dashboard extends React.Component {
         }
     }
 
+    onHoverOpen = () => {
+        const helpbox = document.getElementById("helpbox");
+        helpbox.style.display ="block";
+    }
+    onHoverClose = () => {
+        const helpbox = document.getElementById("helpbox");
+        helpbox.style.display = "none";
+    }
+
     onOpenEdit = () => {
         this.setState({ openE: true });
         console.log(this.setState)
@@ -288,7 +297,14 @@ class Dashboard extends React.Component {
                         <div class="liststatus defaulttext">Search Sitename / App</div>
                         <div class="main-title">
                             <input id="search-li" type="text" placeholder="Search..." onKeyUp={this.filterList} />
-                            <img alt="helpimage" src={Help}/>
+                            
+                            <img alt="helpimage" src={Help} onMouseOver={this.onHoverOpen} onMouseOut={this.onHoverClose}/>
+                            <div id="helpbox">
+                                <h1>Password security indicator:</h1>
+                                <p>Red: Unsecure password</p>
+                                <p>Yellow: Acceptable password security</p>
+                                <p>Green: Secure password</p>
+                            </div>
                         </div>
                     </div>
                     <ul id="ullist">
@@ -306,6 +322,66 @@ class Dashboard extends React.Component {
                         </li>
                         <li class="listelement">
                             <p class="title defaulttext">Twitch</p>
+                            <div class="indicator"></div>
+                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
+                            <button class="retrievepassword listbtn">Retrieve Password</button>
+                        </li>
+                        <li class="listelement">
+                            <p class="title defaulttext">Amazon</p>
+                            <div class="indicator"></div>
+                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
+                            <button class="retrievepassword listbtn">Retrieve Password</button>
+                        </li>
+                        <li class="listelement">
+                            <p class="title defaulttext">Reddit</p>
+                            <div class="indicator"></div>
+                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
+                            <button class="retrievepassword listbtn">Retrieve Password</button>
+                        </li>
+                        <li class="listelement">
+                            <p class="title defaulttext">Steam</p>
+                            <div class="indicator"></div>
+                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
+                            <button class="retrievepassword listbtn">Retrieve Password</button>
+                        </li>
+                        <li class="listelement">
+                            <p class="title defaulttext">Brazzers</p>
+                            <div class="indicator"></div>
+                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
+                            <button class="retrievepassword listbtn">Retrieve Password</button>
+                        </li>
+                        <li class="listelement">
+                            <p class="title defaulttext">Facebook</p>
+                            <div class="indicator"></div>
+                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
+                            <button class="retrievepassword listbtn">Retrieve Password</button>
+                        </li>
+                        <li class="listelement">
+                            <p class="title defaulttext">Amazon</p>
+                            <div class="indicator"></div>
+                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
+                            <button class="retrievepassword listbtn">Retrieve Password</button>
+                        </li>
+                        <li class="listelement">
+                            <p class="title defaulttext">Reddit</p>
+                            <div class="indicator"></div>
+                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
+                            <button class="retrievepassword listbtn">Retrieve Password</button>
+                        </li>
+                        <li class="listelement">
+                            <p class="title defaulttext">Steam</p>
+                            <div class="indicator"></div>
+                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
+                            <button class="retrievepassword listbtn">Retrieve Password</button>
+                        </li>
+                        <li class="listelement">
+                            <p class="title defaulttext">Brazzers</p>
+                            <div class="indicator"></div>
+                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
+                            <button class="retrievepassword listbtn">Retrieve Password</button>
+                        </li>
+                        <li class="listelement">
+                            <p class="title defaulttext">Facebook</p>
                             <div class="indicator"></div>
                             <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
                             <button class="retrievepassword listbtn">Retrieve Password</button>

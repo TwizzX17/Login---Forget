@@ -44,6 +44,14 @@ a {
     margin-left: 10px;
 }
 
+    .navbtn:hover {
+        background-color: rgb(70, 72, 83);
+    }
+
+#auth:hover {
+    background-color: rgb(219, 10, 10);
+}
+
 .navbtn1 {
     background-color: #f63737;
     color: #f1f1f1;
@@ -107,6 +115,7 @@ a {
     position: fixed;
     background: #4f515d;
     border: 4px solid #4f515d;
+    border-radius: 7px;
     width: 408px;
     height: 375px;
     top: 250px;
@@ -171,21 +180,28 @@ a {
     background-color: #454650;
     margin-bottom: 10px;
 }
-.Addpasswordcontent button {
-    width: 307px;
-    height: 26px;
-    font-size: 14px;
-    line-height: 1.33;
-    font-weight: normal;
-    box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
-    border: solid 1px #3a3b43;
-    color: #ffffff;
-    background-color: #8a91d6;
-    margin-top: 10px;
-}
+    .Addpasswordcontent button {
+        width: 307px;
+        height: 30px;
+        font-size: 14px;
+        line-height: 1.33;
+        font-weight: normal;
+        box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
+        border: solid 1px #7b83d1;
+        color: #ffffff;
+        background-color: #8a91d6;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
+    .Addpasswordcontent button:hover {
+        background-color: #7b83d1;
+        border-color: #7b83d1;
+    }
 
 
 .main-title {
+    position:relative;
     display: flex;
     flex-direction: row;
     margin-bottom: -25px;
@@ -198,10 +214,35 @@ a {
     border: solid 1px #3a3b43;
     background-color: #454650;
     color: #bcbccb;
-    margin-right: 365px;
+    margin-right: 358px;
     padding-left: 5px;
     margin-left: 7px;
 }
+
+#helpbox {
+    font-family: "Segoe UI";
+    color: #bcbccb;
+    display: none;
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    background: #4f515d;
+    margin-right: auto;
+    margin-left: auto;
+    top: 15px;
+    right: 0;
+    left: 0;
+    border: 3px solid #2f3037;
+    border-radius: 5px;
+}
+    #helpbox h1 {
+        font-weight: normal;
+        font-size: 20px;
+        margin: 5px 10px 10px 10px;
+    }
+    #helpbox p{
+        margin: 5px 10px 5px 10px;
+    }
 
 #ullist {
     padding-left: 0;
@@ -239,6 +280,10 @@ a {
     margin-right: 5px;
     margin-left: 5px;
 }
+
+    .listbtn:hover {
+        background-color: rgb(70, 72, 83);
+    }
 
 .search {
     padding-top: 5px;
@@ -473,6 +518,11 @@ a {
     margin-top: 6px;
 }
 
+    .loginsubmit:hover {
+        background-color: #7b83d1;
+        border-color: #7b83d1;
+    }
+
 .Createsubmit {
     margin-top: 25px;
 }
@@ -582,6 +632,11 @@ a {
     line-height: 1.36;
     color: #ffffff;
 }
+
+    #profileset-submit:hover {
+        background-color: #7b83d1;
+        border-color: #7b83d1;
+    }
 
 
 
