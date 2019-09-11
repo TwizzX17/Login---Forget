@@ -11,9 +11,88 @@ class Login extends React.Component {
         //state can contain properties
         this.state = {
             openP: false,
-            openA: false
+            openA: false,
+            Pemail: "test@gmail.com",
+            Pfirstname: "",
+            Plastname: "",
+            Pcountry: "",
+            Pcity: "",
+            Pstreet: "",
+            Pzip: "",
+            Pphone: ""
         };
     }
+    //ComponentDidMount will run after we have rendered the site
+    componentDidMount() {
+
+
+        //Get data for our profile states
+        fetch(/profile/)
+            .then((resp) => resp.json())
+            .then(function (data) {
+                let info = data.results; //Get the results
+                this.setState({ Pemail: info.email });
+                this.setState({ Pfirstname: info.firstname });
+                this.setState({ Plastname: info.lastname });
+                this.setState({ Pcountry: info.country });
+                this.setState({ Pcity: info.city });
+                this.setState({ Pstreet: info.street });
+                this.setState({ Pzip: info.zip });
+                this.setState({ Pphone: info.phone });
+            })
+    }
+
+    onSaveChanges = () => {
+
+        //Fetch post to server
+        fetch('/Profile/submitdata', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                Email: this.state.Pemail,
+                FirstName: this.state.Pfirstname,
+                LastName: this.state.Plastname,
+                Country: this.state.Pcountry,
+                City: this.state.Pcity,
+                Street: this.state.Pstreet,
+                Zip: this.state.Pzip,
+                Phone: this.state.Pphone
+            }),
+        })
+            .then(response => response.json()) // response.json() returns a promise
+            .then((response) => {
+                console.log(response)
+            });
+    }
+
+    handleChangeEmail = (event) => {
+        this.setState({ Pemail: event.target.value });
+    }
+    handleChangeFirstname = (event) => {
+        this.setState({ Pemail: event.target.value });
+    }
+    handleChangeLastname = (event) => {
+        this.setState({ Pemail: event.target.value });
+    }
+    handleChangeCountry = (event) => {
+        this.setState({ Pemail: event.target.value });
+    }
+    handleChangeCity = (event) => {
+        this.setState({ Pemail: event.target.value });
+    }
+    handleChangeStreet = (event) => {
+        this.setState({ Pemail: event.target.value });
+    }
+    handleChangeZip = (event) => {
+        this.setState({ Pemail: event.target.value });
+    }
+    handleChangePhone = (event) => {
+        this.setState({ Pemail: event.target.value });
+    }
+
+
 
     //Sets  the value false as default
     //state can contain properties
@@ -27,45 +106,97 @@ class Login extends React.Component {
         console.log(this.setState)
     }
 
-    onCloseAddPassword = () => {
+    onCloseAddPasswordO = () => {
         this.setState({ openP: false });
+    }
 
+    onCloseAddPassword = () => {
+        const feedback = "This field cannot be empty";
         const lvalue = document.getElementById("LabelId").value;
         const uvalue = document.getElementById("DomaneId").value;
-        fetch('/dashboard/add-password', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ label: lvalue, url: uvalue }),
-        })
-            .then(response => response.json()) // response.json() returns a promise
-            .then((response) => {
-                console.log(response)
-            });
+        var cvalue = document.getElementById("CustomPassword").value;
+        var valid1 = 0;
+        var valid2 = 0;
+        var valid3 = 0;
+        var labelfeedback = document.getElementById("Lfeedback");
+        var domanefeedback = document.getElementById("Dfeedback");
+        var custompassfeedback = document.getElementById("Cfeedback");
+
+        if (lvalue === "") {
+            labelfeedback.innerHTML = feedback;
+            valid1 = 1;
+        } else {
+            labelfeedback.innerHTML = "";
+        }
+        if (uvalue === "") {
+            domanefeedback.innerHTML = feedback;
+            valid2 = 1;
+        } else {
+            domanefeedback.innerHTML = "";
+        }
+        if (cvalue.length > 0 && cvalue.length <= 8) {
+            custompassfeedback.innerHTML = "This field cannot be less than 8 characters";
+            valid3 = 1;
+        } else {
+            custompassfeedback.innerHTML = "";
+
+        }
+        if (valid1 === 0 && valid2 === 0 && valid3 === 0) {
+            this.setState({ openP: false });
+            fetch('/dashboard/add-password', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ label: lvalue, url: uvalue, custompass: cvalue }),
+            })
+                .then(response => response.json()) // response.json() returns a promise
+                .then((response) => {
+                    console.log(response)
+                });
+        }
+
+
     }
 
     onOpenAuthenticate = () => {
         this.setState({ openA: true });
-        console.log(this.setState)
+    }
+
+    onCloseAuthenticateO = () => {
+        this.setState({ openA: false });
     }
 
     onCloseAuthenticate = () => {
-        this.setState({ openA: false });
-
-        const avalue = document.getElementById("AuthCode").value;
-        fetch('/dashboard/2fa', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ submittednumber: avalue }),
-        })
-            .then(response => response.json()) // response.json() returns a promise
-            .then((response) => {
-                console.log(response)
-            });
+        const feedback = "This field cannot be empty";
+        const avalue = document.getElementById("AuthenticateCode").value;
+        var valid1 = 0;
+        var Authinput = document.getElementById("authfeedback");
+        if (avalue === "") {
+            Authinput.innerHTML = feedback;
+            valid1 = 1;
+        } else {
+            Authinput.innerHTML = "";
+        }
+        if (valid1 === 0) {
+            this.setState({ openA: false });
+            fetch('/dashboard/2fa', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ submittednumber: avalue }),
+            })
+                .then(response => response.json()) // response.json() returns a promise
+                .then((response) => {
+                    console.log(response)
+                });
+        }
     }
+
+    
+
+
     render() {
         return (
 
@@ -80,17 +211,18 @@ class Login extends React.Component {
                             <input id="auth" className="navbtn navbtn1" onClick={this.onOpenAuthenticate} type="button" value="Authenticate" />
                             <ReactModal
                                 isOpen={this.state.openA}
-                                contentLabel="Minimal Modal Example"
+                                contentLabel="Authentication"
                                 className="AddPasswordBox"
                                 overlayClassName="PaswordBoxOverlay"
-                                onRequestClose={this.onCloseAuthenticate}>
+                                shouldCloseOnOverlayClick={true}
+                                onRequestClose={this.onCloseAuthenticateO}>
 
                                 <div class="Addpasswordcontent">
-                                    <h1>Two Factor Authentication</h1>
-                                    <p>QR Code</p>
-                                    <p>Enter code</p>
-                                    <input id="AuthCode" type="text" />
-                                    <button onClick={this.onCloseAddPassword}>Generate Password</button>
+                                    <h1>Two factor authentication</h1>
+                                    <p>Enter code to confirm:</p>
+                                    <p className="error" id="authfeedback"></p>
+                                    <input id="AuthenticateCode" type="text" />
+                                    <button onClick={this.onCloseAuthenticate}>Generate Password</button>
                                 </div>
 
                             </ReactModal>
@@ -102,17 +234,22 @@ class Login extends React.Component {
                             <input class="navbtn navbtn2" onClick={this.onOpenAddPassword} type="button" value="Add Password" />
                             <ReactModal
                                 isOpen={this.state.openP}
-                                contentLabel="Minimal Modal Example"
+                                contentLabel="AddPasswordModal"
                                 className="AddPasswordBox"
                                 overlayClassName="PaswordBoxOverlay"
-                                onRequestClose={this.onCloseAddPassword}>
+                                onRequestClose={this.onCloseAddPasswordO}>
 
                                 <div class="Addpasswordcontent">
                                     <h1>Enter the information for your site in the fields below - then click generate!</h1>
                                     <p>Label - E. G. Facebook John</p>
+                                    <p id="Lfeedback" className="error"></p>
                                     <input id="LabelId" type="text" />
                                     <p>Url - E. g. https://www.facebook.com</p>
+                                    <p id="Dfeedback" className="error"></p>
                                     <input id="DomaneId" type="text" />
+                                    <p>Custom password (Optional)</p>
+                                    <p id="Cfeedback" className="error"></p>
+                                    <input id="CustomPassword" type="password" />
                                     <button onClick={this.onCloseAddPassword}>Generate Password</button>
                                 </div>
 
@@ -137,30 +274,30 @@ class Login extends React.Component {
                             </div>
                             <div>
                                 <div class="profile-item-titles">E-mail*</div>
-                                <input class="profile-set-input" type="text"/>
+                                <input id="iemail" class="profile-set-input" type="text" value={this.state.Pemail} onChange={this.handleChangeEmail} />
                                 <div class="profile-item-titles">First Name</div>
-                                <input class="profile-set-input" type="text"/>
+                                <input id="ifirstname" class="profile-set-input" type="text" value={this.state.Pfirstname} onChange={this.handleChangeFirstname} />
                                 <div class="profile-item-titles">Last Name</div>
-                                <input class="profile-set-input" type="text"/>
+                                <input id="ilastname" class="profile-set-input" type="text" value={this.state.Plastname} onChange={this.handleChangeLastname}/>
                                 <div class="profile-item-titles">Country</div>
-                                <input class="profile-set-input" type="text"/>
+                                <input id="icountry" class="profile-set-input" type="text" value={this.state.Pcountry} onChange={this.handleChangeCountry}/>
                             </div>
                         </div>
                         <div class="profile-flexitem">
                             <input type="button" id="premiummember" value="Premium Member"/>
                             <div>
                                 <div class="profile-item-titles">City</div>
-                                <input class="profile-set-input" type="text"/>
+                                <input id="icity" class="profile-set-input" type="text" value={this.state.Pcity} onChange={this.handleChangeCity} />
                                 <div class="profile-item-titles">Street</div>
-                                <input class="profile-set-input" type="text"/>
+                                <input id="istreet" class="profile-set-input" type="text" value={this.state.Pstreet} onChange={this.handleChangeStreet}/>
                                 <div class="profile-item-titles">Zip</div>
-                                <input class="profile-set-input" type="text"/>
+                                <input id="izip" class="profile-set-input" type="text" value={this.state.Pzip} onChange={this.handleChangeZip}/>
                                 <div class="profile-item-titles">Phone</div>
-                                <input class="profile-set-input" type="text"/>
+                                <input id="iphone" class="profile-set-input" type="text" value={this.state.Pphone} onChange={this.handleChangePhone}/>
                             </div>
                         </div>
                     </div>
-                    <input id="profileset-submit" type="button" value="Save Changes"/>
+                    <input id="profileset-submit" type="button" value="Save Changes" onClick={this.onSaveChanges} onChange={this.handleChangeEmail}/>
                 </div>
             </div>
             
