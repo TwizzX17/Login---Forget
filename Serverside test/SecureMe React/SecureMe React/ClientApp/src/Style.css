@@ -12,6 +12,10 @@ a {
     text-decoration: none;
 }
 
+button, input, div {
+    outline: none;
+}
+
 #nav {
     position: fixed;
     height: 105px;
