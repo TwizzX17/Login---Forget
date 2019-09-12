@@ -44,52 +44,121 @@ class Login extends React.Component {
 
     onSaveChanges = () => {
 
-        //Fetch post to server
-        fetch('/Profile/submitdata', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                Email: this.state.Pemail,
-                FirstName: this.state.Pfirstname,
-                LastName: this.state.Plastname,
-                Country: this.state.Pcountry,
-                City: this.state.Pcity,
-                Street: this.state.Pstreet,
-                Zip: this.state.Pzip,
-                Phone: this.state.Pphone
-            }),
-        })
-            .then(response => response.json()) // response.json() returns a promise
-            .then((response) => {
-                console.log(response)
-            });
+        const firstname = document.getElementById("eifirstname");
+        const lastname = document.getElementById("eilastname")
+        const country = document.getElementById("eicountry")
+        const city = document.getElementById("eicity")
+        const street = document.getElementById("eistreet")
+        const zip = document.getElementById("eizip")
+        const phone = document.getElementById("eiphone")
+        let validate = 0;
+        //Validate length of inputs.
+        if (this.state.Pfirstname.length > 30) {
+            //error
+            firstname.innerHTML = "This field cannot be more than 30 characters long";
+            validate = 1;
+        } else {
+            firstname.innerHTML = "";
+        }
+        if (this.state.Plastname.length > 40) {
+            //error
+            lastname.innerHTML = "This field cannot be more than 40 characters long";
+            validate = 1;
+        } else {
+            lastname.innerHTML = "";
+        }
+        if (this.state.Pcountry.length > 50) {
+            //error
+            country.innerHTML = "This field cannot be more than 50 characters long";
+            validate = 1;
+        } else {
+            country.innerHTML = "";
+        }
+        if (this.state.Pcity.length > 80) {
+            //error
+            city.innerHTML = "This field cannot be more than 80 characters long";
+            validate = 1;
+        } else {
+            city.innerHTML = "";
+        }
+        if (this.state.Pstreet.length > 80) {
+            //error
+            street.innerHTML = "This field cannot be more than 80 characters long";
+            validate = 1;
+        } else {
+            street.innerHTML = "";
+        }
+        if (this.state.Pzip.length > 10) {
+            //error
+            zip.innerHTML = "This field cannot be more than 10 characters long";
+            validate = 1;
+        } else {
+            zip.innerHTML = "";
+        }
+        if (this.state.Pphone.length > 20) {
+            //error
+            phone.innerHTML = "This field cannot be more than 20 characters long";
+            validate = 1;
+        } else {
+            phone.innerHTML = "";
+        }
+
+
+
+
+
+        if (validate === 0) {
+            //if all states are ok, we get here
+            //Fetch post to server
+            fetch('/Profile/submitdata', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    Email: this.state.Pemail, //50
+                    FirstName: this.state.Pfirstname,//30
+                    LastName: this.state.Plastname,//40
+                    Country: this.state.Pcountry,//50
+                    City: this.state.Pcity,//80
+                    Street: this.state.Pstreet,//80
+                    Zip: this.state.Pzip,//10
+                    Phone: this.state.Pphone//
+                }),
+                })
+                .then(response => response.json()) // response.json() returns a promise
+                .then((response) => {
+                    console.log(response)
+                });
+        }
+            
+        
+
+
+
+        
     }
 
-    handleChangeEmail = (event) => {
-        this.setState({ Pemail: event.target.value });
-    }
     handleChangeFirstname = (event) => {
-        this.setState({ Pemail: event.target.value });
+        this.setState({ Pfirstname: event.target.value });
     }
     handleChangeLastname = (event) => {
-        this.setState({ Pemail: event.target.value });
+        this.setState({ Plastname: event.target.value });
     }
     handleChangeCountry = (event) => {
-        this.setState({ Pemail: event.target.value });
+        this.setState({ Pcountry: event.target.value });
     }
     handleChangeCity = (event) => {
-        this.setState({ Pemail: event.target.value });
+        this.setState({ Pcity: event.target.value });
     }
     handleChangeStreet = (event) => {
-        this.setState({ Pemail: event.target.value });
+        this.setState({ Pstreet: event.target.value });
     }
     handleChangeZip = (event) => {
-        this.setState({ Pemail: event.target.value });
+        this.setState({ Pzip: event.target.value });
     }
     handleChangePhone = (event) => {
-        this.setState({ Pemail: event.target.value });
+        this.setState({ Pphone: event.target.value });
     }
 
 
@@ -273,31 +342,55 @@ class Login extends React.Component {
                                 <input class="profile-set-input" type="text" placeholder="Unauthorized"/>
                             </div>
                             <div>
-                                <div class="profile-item-titles">E-mail*</div>
-                                <input id="iemail" class="profile-set-input" type="text" value={this.state.Pemail} onChange={this.handleChangeEmail} />
-                                <div class="profile-item-titles">First Name</div>
+                                <div className="profile-item-titles-flex">
+                                    <h1 class="profile-item-titles">E-mail*</h1>
+                                    <p id="eiemail" className="error"></p>
+                                </div>
+                                <input id="iemail" class="profile-set-input" type="text" value={this.state.Pemail} disabled />
+                                <div className="profile-item-titles-flex">
+                                    <h1 class="profile-item-titles">First Name</h1>
+                                    <p id="eifirstname" className="error"></p>
+                                </div>
                                 <input id="ifirstname" class="profile-set-input" type="text" value={this.state.Pfirstname} onChange={this.handleChangeFirstname} />
-                                <div class="profile-item-titles">Last Name</div>
+                                <div className="profile-item-titles-flex">
+                                    <h1 class="profile-item-titles">Last Name</h1>
+                                    <p id="eilastname" className="error"></p>
+                                </div>
                                 <input id="ilastname" class="profile-set-input" type="text" value={this.state.Plastname} onChange={this.handleChangeLastname}/>
-                                <div class="profile-item-titles">Country</div>
+                                <div className="profile-item-titles-flex">
+                                    <h1 class="profile-item-titles">Country</h1>
+                                    <p id="eicountry" className="error"></p>
+                                </div>
                                 <input id="icountry" class="profile-set-input" type="text" value={this.state.Pcountry} onChange={this.handleChangeCountry}/>
                             </div>
                         </div>
                         <div class="profile-flexitem">
                             <input type="button" id="premiummember" value="Premium Member"/>
                             <div>
-                                <div class="profile-item-titles">City</div>
+                                <div className="profile-item-titles-flex">
+                                    <h1 class="profile-item-titles">City</h1>
+                                    <p id="eicity" className="error"></p>
+                                </div>
                                 <input id="icity" class="profile-set-input" type="text" value={this.state.Pcity} onChange={this.handleChangeCity} />
-                                <div class="profile-item-titles">Street</div>
+                                <div className="profile-item-titles-flex">
+                                    <h1 class="profile-item-titles">Street</h1>
+                                    <p id="eistreet" className="error"></p>
+                                </div>
                                 <input id="istreet" class="profile-set-input" type="text" value={this.state.Pstreet} onChange={this.handleChangeStreet}/>
-                                <div class="profile-item-titles">Zip</div>
+                                <div className="profile-item-titles-flex">
+                                    <h1 class="profile-item-titles">Zip</h1>
+                                    <p id="eizip" className="error"></p>
+                                </div>
                                 <input id="izip" class="profile-set-input" type="text" value={this.state.Pzip} onChange={this.handleChangeZip}/>
-                                <div class="profile-item-titles">Phone</div>
-                                <input id="iphone" class="profile-set-input" type="text" value={this.state.Pphone} onChange={this.handleChangePhone}/>
+                                <div className="profile-item-titles-flex">
+                                    <h1 class="profile-item-titles">Phone</h1>
+                                    <p id="eiphone" className="error"></p>
+                                </div>
+                                <input id="iphone" class="profile-set-input" type="number" value={this.state.Pphone} onChange={this.handleChangePhone}/>
                             </div>
                         </div>
                     </div>
-                    <input id="profileset-submit" type="button" value="Save Changes" onClick={this.onSaveChanges} onChange={this.handleChangeEmail}/>
+                    <input id="profileset-submit" type="button" value="Save Changes" onClick={this.onSaveChanges}/>
                 </div>
             </div>
             

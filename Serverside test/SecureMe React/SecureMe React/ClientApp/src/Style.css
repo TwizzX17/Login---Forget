@@ -557,30 +557,43 @@ button, input, div {
     align-content: center;
     justify-content: center;
     width: 940px;
-    height: 465px;
+    height: 650px;
 }
 
 .profile-flexitem {
     display: flex;
     flex-direction: column;
     width: 390px;
-    ;
-    height: 425px;
+    height: 550px;
     align-items: center;
     padding-top: 42px;
+}
+
+.profile-flexitem p {
+    font-size: 12px;
 }
 
 .profile-set-structure {
     margin-bottom: 60px;
 }
 
+.profile-item-titles-flex {
+    font-weight: normal;
+}
+.profile-item-titles-flex p {
+    font-size:12px;
+    margin:2px;
+    height:15px;
+}
+
 .profile-item-titles {
-    width: 230px;
-    height: 23px;
+    width: 115px;
+    height: 30px;
     font-size: 20px;
     line-height: 1.35;
     color: #bcbccb;
-    padding-bottom: 9px;
+    font-weight: normal;
+    margin: 0;
 }
 
 .profile-set-input {
@@ -593,9 +606,14 @@ button, input, div {
     color: #bcbccb;
     font-size: 14px;
     line-height: 1.36;
-    margin-bottom: 7.3px;
     padding-left: 2%;
     padding-right: 2%;
+    margin-bottom:10px;
+}
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .titlecontain {
