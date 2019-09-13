@@ -7,7 +7,7 @@ import AuthService from './AuthService';
 class Login extends React.Component {
     constructor() {
         super()
-        this.handleFormSubmit = this.handleFormSubmit.bind();
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.Auth = new AuthService();
 
     }

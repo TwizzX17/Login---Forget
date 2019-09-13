@@ -23,16 +23,16 @@ export default function withAuth(AuthComponent) {
                 }
                 catch (err) {
                     Auth.logout();
-                    tihis.props.history.replace('/login')
+                    this.props.history.replace('/login')
                 }
             }
         }
         render() {
             if (this.state.user) {
                 return (
-                    <AuthComponent {...this.props) {...this.state} />
-            }
-            else {
+                    <AuthComponent history={this.props.history} user={this.state.user} />
+                )
+            } else {
                 return null;
             }
         }

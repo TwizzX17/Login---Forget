@@ -4,6 +4,12 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/Logo.svg';
 import Edit from '../assets/Edit.svg';
 import Help from '../assets/help.svg';
+import AuthService from './AuthService';
+import withAuth from './withAuth';
+
+
+
+var Auth = new AuthService();
 
 class Dashboard extends React.Component {
     constructor() {
@@ -15,6 +21,11 @@ class Dashboard extends React.Component {
             openA: false,
             openE: false,
         };
+    }
+    //Will use method from our AuthService Class
+    handleLogout() {
+        Auth.logout()
+        this.props.history.replace('/login');
     }
 
     //Sets  the value false as default
@@ -189,6 +200,7 @@ class Dashboard extends React.Component {
 
 
 
+
     filterList = () => {
         var input, filter, table, li, p, i, txtValue;
         input = document.getElementById("search-li");
@@ -264,7 +276,7 @@ class Dashboard extends React.Component {
                             </ReactModal>
                         </div>
                         <div class="placement-nav placement-nav-btn">
-                            <Link to="/Logout"><input class="navbtn navbtn3" type="button" value="Log out"/></Link>
+                            <Link to="/Logout"><input class="navbtn navbtn3" type="button" onClick={this.handleLogout.bind(this)} value="Log out"/></Link>
                         </div>
                     </div>
                 </nav>
@@ -423,4 +435,5 @@ class Dashboard extends React.Component {
             );
     }
 }
-export default Dashboard
+//export default Dashboard
+export default withAuth(Dashboard);

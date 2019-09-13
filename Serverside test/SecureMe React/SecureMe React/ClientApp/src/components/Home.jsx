@@ -2,9 +2,7 @@
 import bannerfrontpage from '../assets/banner-frontpage.jpg';
 import logo from '../assets/Logo.svg';
 import { Link } from 'react-router-dom';
-
 class Home extends Component {
-
     render() {
         
         return (

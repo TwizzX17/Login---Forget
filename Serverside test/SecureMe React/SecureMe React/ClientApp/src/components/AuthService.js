@@ -49,7 +49,7 @@ export default class AuthService {
     isTokenExpired(token) {
         try {
             const decoded = decode(token);
-            if (decoded.exp < Date.now() / 100) {
+            if (decoded.exp < Date.now() / 1000) {
                 return true
             }
             else {
@@ -69,7 +69,7 @@ export default class AuthService {
     }
 
     _checkStatus(response) {
-        if (response.status >= 200 && response < 300) {
+        if (response.status >= 200 && response.status < 300) {
             return response
         } else {
             let error = new Error(response.statusText)
