@@ -1,8 +1,33 @@
 ﻿import React from 'react'
 import logo from '../assets/Logo.svg';
 import { Link } from 'react-router-dom';
+import AuthService from './AuthService';
+
 
 class Login extends React.Component {
+    constructor() {
+        super()
+        this.handleFormSubmit = this.handleFormSubmit.bind();
+        this.Auth = new AuthService();
+
+    }
+
+    componentWillMount() {
+        if (this.Auth.loggedIn())
+            this.props.history.replace('/')
+    }
+
+    handleFormSubmit = (e) => {
+        e.preventDefault();
+        this.Auth.login(this.state.username, this.state.password)
+            .then(res => {
+                this.props.history.replace('/');
+            })
+            .catch(err => {
+                alert(err);
+            })
+    }
+
     render() {
         return (
             
@@ -25,7 +50,7 @@ class Login extends React.Component {
                                 <Link to="/forgot-pass"><div id="forgotpass">Forgot password?</div></Link>
                                 <Link to="/create-account"><div id="createaccount">Need an Account?</div></Link>
                             </div>
-                            <input class="loginsubmit" type="submit" value="Login" />
+                            <input class="loginsubmit" type="submit" value="Login" onSubmit={this.handleFormSubmit} />
                             </div>
 
 

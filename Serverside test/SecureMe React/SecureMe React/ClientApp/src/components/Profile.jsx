@@ -55,49 +55,49 @@ class Login extends React.Component {
         //Validate length of inputs.
         if (this.state.Pfirstname.length > 30) {
             //error
-            firstname.innerHTML = "This field cannot be more than 30 characters long";
+            firstname.innerHTML = "This field can't be longer than 30 characters";
             validate = 1;
         } else {
             firstname.innerHTML = "";
         }
         if (this.state.Plastname.length > 40) {
             //error
-            lastname.innerHTML = "This field cannot be more than 40 characters long";
+            lastname.innerHTML = "This field can't be longer than 40 characters";
             validate = 1;
         } else {
             lastname.innerHTML = "";
         }
         if (this.state.Pcountry.length > 50) {
             //error
-            country.innerHTML = "This field cannot be more than 50 characters long";
+            country.innerHTML = "This field can't be longer than 50 characters";
             validate = 1;
         } else {
             country.innerHTML = "";
         }
         if (this.state.Pcity.length > 80) {
             //error
-            city.innerHTML = "This field cannot be more than 80 characters long";
+            city.innerHTML = "This field can't be longer than 80 characters";
             validate = 1;
         } else {
             city.innerHTML = "";
         }
         if (this.state.Pstreet.length > 80) {
             //error
-            street.innerHTML = "This field cannot be more than 80 characters long";
+            street.innerHTML = "This field can't be longer than 80 characters";
             validate = 1;
         } else {
             street.innerHTML = "";
         }
         if (this.state.Pzip.length > 10) {
             //error
-            zip.innerHTML = "This field cannot be more than 10 characters long";
+            zip.innerHTML = "This can't be longer than 10 characters";
             validate = 1;
         } else {
             zip.innerHTML = "";
         }
         if (this.state.Pphone.length > 20) {
             //error
-            phone.innerHTML = "This field cannot be more than 20 characters long";
+            phone.innerHTML = "This field can't be longer than 20 characters";
             validate = 1;
         } else {
             phone.innerHTML = "";
