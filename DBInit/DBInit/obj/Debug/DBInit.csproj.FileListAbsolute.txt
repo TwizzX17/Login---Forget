@@ -1,0 +1,12 @@
+C:\Users\Storkmeister\source\repos\SM-DB-Init\src\DBInit\DBInit\bin\Debug\DBInit.exe.config
+C:\Users\Storkmeister\source\repos\SM-DB-Init\src\DBInit\DBInit\bin\Debug\DBInit.exe
+C:\Users\Storkmeister\source\repos\SM-DB-Init\src\DBInit\DBInit\bin\Debug\DBInit.pdb
+C:\Users\Storkmeister\source\repos\SM-DB-Init\src\DBInit\DBInit\bin\Debug\EntityFramework.dll
+C:\Users\Storkmeister\source\repos\SM-DB-Init\src\DBInit\DBInit\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Storkmeister\source\repos\SM-DB-Init\src\DBInit\DBInit\bin\Debug\EntityFramework.xml
+C:\Users\Storkmeister\source\repos\SM-DB-Init\src\DBInit\DBInit\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Storkmeister\source\repos\SM-DB-Init\src\DBInit\DBInit\obj\Debug\DBInit.csprojAssemblyReference.cache
+C:\Users\Storkmeister\source\repos\SM-DB-Init\src\DBInit\DBInit\obj\Debug\DBInit.csproj.CoreCompileInputs.cache
+C:\Users\Storkmeister\source\repos\SM-DB-Init\src\DBInit\DBInit\obj\Debug\DBInit.csproj.CopyComplete
+C:\Users\Storkmeister\source\repos\SM-DB-Init\src\DBInit\DBInit\obj\Debug\DBInit.exe
+C:\Users\Storkmeister\source\repos\SM-DB-Init\src\DBInit\DBInit\obj\Debug\DBInit.pdb
