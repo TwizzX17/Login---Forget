@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -28,6 +29,7 @@ namespace SecureMe_React.Controllers
 
 
         [AllowAnonymous]
+        [Route("/Login")]
         [HttpPost("[action]")]
         public IActionResult Login([FromBody]UserModel login)
         {
@@ -47,10 +49,17 @@ namespace SecureMe_React.Controllers
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            
+            //Adding Specific infomation to the cookie, to recognize the user.
+            var claims = new[] {
+            new Claim(JwtRegisteredClaimNames.Email, userInfo.EmailAddress),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+    };
+
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
-              null,
+              claims,
               expires: DateTime.Now.AddMinutes(120),
               signingCredentials: credentials);
 
@@ -70,11 +79,12 @@ namespace SecureMe_React.Controllers
             return user;
         }
 
-
+        [Route("/Login")]
         [HttpGet("[action]")]
         public string test()
         {
             return "testboy";
         }
+
     }
 }

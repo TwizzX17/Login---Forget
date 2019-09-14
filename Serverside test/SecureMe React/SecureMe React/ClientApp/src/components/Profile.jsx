@@ -3,6 +3,10 @@ import ReactModal from "react-modal";
 import { Link } from 'react-router-dom';
 import logo from '../assets/Logo.svg';
 import Help from '../assets/help.svg';
+import AuthService from './AuthService';
+import withAuth from './withAuth';
+
+var Auth = new AuthService();
 
 class Login extends React.Component {
     constructor() {
@@ -40,6 +44,12 @@ class Login extends React.Component {
                 this.setState({ Pzip: info.zip });
                 this.setState({ Pphone: info.phone });
             })
+    }
+
+    //Will use method from our AuthService Class
+    handleLogout() {
+        Auth.logout()
+        this.props.history.replace('/login');
     }
 
     onSaveChanges = () => {
@@ -325,7 +335,7 @@ class Login extends React.Component {
                             </ReactModal>
                         </div>
                         <div class="placement-nav placement-nav-btn">
-                            <Link to="/Logout"><input class="navbtn navbtn3" type="button" value="Log out" /></Link>
+                            <input class="navbtn navbtn3" type="button" onClick={this.handleLogout.bind(this)} value="Log out" />
                         </div>
                     </div>
                 </nav>
@@ -397,4 +407,4 @@ class Login extends React.Component {
             );
     }
 }
-export default Login
+export default withAuth(Login);

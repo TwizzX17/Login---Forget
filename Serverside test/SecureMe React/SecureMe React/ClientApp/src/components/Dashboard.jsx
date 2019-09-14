@@ -38,7 +38,6 @@ class Dashboard extends React.Component {
     //and all other lifecycle methods.
     onOpenAddPassword = () => {
         this.setState({ openP: true });
-        console.log(this.setState)
     }
 
     onCloseAddPasswordO = () => {
@@ -276,7 +275,7 @@ class Dashboard extends React.Component {
                             </ReactModal>
                         </div>
                         <div class="placement-nav placement-nav-btn">
-                            <Link to="/Logout"><input class="navbtn navbtn3" type="button" onClick={this.handleLogout.bind(this)} value="Log out"/></Link>
+                            <input class="navbtn navbtn3" type="button" onClick={this.handleLogout.bind(this)} value="Log out"/>
                         </div>
                     </div>
                 </nav>

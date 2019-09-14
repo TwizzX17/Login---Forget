@@ -9,19 +9,21 @@ class Login extends React.Component {
         super()
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.Auth = new AuthService();
-
     }
+        
 
     componentWillMount() {
         if (this.Auth.loggedIn())
-            this.props.history.replace('/')
+            this.props.history.replace('/Dashboard')
+            
     }
 
-    handleFormSubmit = (e) => {
-        e.preventDefault();
-        this.Auth.login(this.state.username, this.state.password)
+    handleFormSubmit = () => {
+        const user = document.getElementById('lemail').value;
+        const pass = document.getElementById('lpass').value;
+        this.Auth.login(user, pass)
             .then(res => {
-                this.props.history.replace('/');
+                this.props.history.replace('/Dashboard');
             })
             .catch(err => {
                 alert(err);
@@ -35,7 +37,7 @@ class Login extends React.Component {
             <div id="login-main">
                 <div>
                     <div>
-                        <img id="login-logo" alt="Logo" src={logo}/>
+                        <Link to="/"><img id="login-logo" alt="Logo" src={logo} /></Link>
                     </div>
                         <div id="login-title">~ Your one secure way to everything ~</div>
                         <div class="loginbox">
@@ -43,14 +45,14 @@ class Login extends React.Component {
                         <div class="formtitles formtitles1"></div>
                             <div id="formsandtitles">
                                 <div class="formtitles">E-mail</div>
-                                <input class="loginforms" type="text"/>
+                                <input id="lemail" class="loginforms" type="text"/>
                             <div class="formtitles formtitles2">Password</div>
-                            <input class="loginforms" type="Password" />
+                            <input id="lpass" class="loginforms" type="Password" />
                             <div id="login-options">
                                 <Link to="/forgot-pass"><div id="forgotpass">Forgot password?</div></Link>
                                 <Link to="/create-account"><div id="createaccount">Need an Account?</div></Link>
                             </div>
-                            <input class="loginsubmit" type="submit" value="Login" onSubmit={this.handleFormSubmit} />
+                            <input class="loginsubmit" type="submit" value="Login" onClick={this.handleFormSubmit} />
                             </div>
 
 

@@ -10,7 +10,7 @@ class Login extends React.Component {
             <div id="login-main">
                 <div>
                     <div>
-                        <img id="login-logo" src={logo}/>
+                        <Link to="/"><img id="login-logo" src={logo}/></Link>
                     </div>
                         <div id="login-title">~ Your one secure way to everything ~</div>
                         <div id="createacc">
