@@ -21,12 +21,6 @@ namespace SecureMe_React.Controllers
             _config = config;
         }
 
-        [HttpPost("[action]")]
-        public string postar()
-        {
-            return "perfekt";
-        }
-
 
         [AllowAnonymous]
         [Route("/Login")]
@@ -50,13 +44,13 @@ namespace SecureMe_React.Controllers
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             
-            //Adding Specific infomation to the cookie, to recognize the user.
+            //Adding Specific infomation to our new variable 'Claim'
             var claims = new[] {
             new Claim(JwtRegisteredClaimNames.Email, userInfo.EmailAddress),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
     };
 
-
+            //Here we create and add information to our token
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
               claims,
@@ -79,7 +73,8 @@ namespace SecureMe_React.Controllers
             return user;
         }
 
-        [Route("/Login")]
+
+        //test
         [HttpGet("[action]")]
         public string test()
         {
