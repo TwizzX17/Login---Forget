@@ -23,7 +23,7 @@ namespace SecureMe_React
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            //This will validate our token from the user, if authorize is appied
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
@@ -37,7 +37,10 @@ namespace SecureMe_React
                     ValidAudience = Configuration["Jwt:Issuer"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
+
+
             });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // In production, the React files will be served from this directory
@@ -60,6 +63,9 @@ namespace SecureMe_React
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+
+
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

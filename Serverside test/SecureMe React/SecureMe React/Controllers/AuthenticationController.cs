@@ -10,7 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace SecureMe_React.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
@@ -23,7 +23,6 @@ namespace SecureMe_React.Controllers
 
 
         [AllowAnonymous]
-        [Route("/Login")]
         [HttpPost("[action]")]
         public IActionResult Login([FromBody]UserModel login)
         {

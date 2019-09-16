@@ -17,7 +17,7 @@ export default class AuthService {
         if (this.loggedIn()) {
             standardheader['Authorization'] = `Bearer ${this.getToken()}`
         }
-        return fetch('/api/Authentication/Login', {
+        return fetch('/Authentication/Login', {
             method: "POST",
             headers: standardheader,
             body: JSON.stringify({ username: username, password: password }),
