@@ -20,18 +20,47 @@ class Dashboard extends React.Component {
             openP: false,
             openA: false,
             openE: false,
+            AllPass: []
+            ,
         };
     }
-
     componentDidMount() {
         //Get passwords from database
-        fetch('/distributor/passwords')
-            .then((resp) => resp.json())
-            .then(function (data) {
-             let info = data.results; //Get the results
-                console.log(data);
-            })
+        fetch('/Distributor/Passwords', {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Auth.getToken()}`,
+            }
+        }).then(function (response) {
+            return response.json();
+        }).then((response) => {
+            this.setState({ AllPass: response});
+        }).then((appendpasswords) => {
+            let passwords = this.state.AllPass;
+            console.log(passwords);
+            console.log(this.state.AllPass[0]);
 
+            let ullist = document.getElementById("ullist")
+            for (var i = 0; i <= passwords.length; i++) {
+                let id = passwords[i].Id;
+                let password = passwords[i].Passwords;
+                let SiteDescription = passwords[i].SiteDescription;
+                let SiteLocation = passwords[i].SiteLocation;
+                let GeneratedOnDate = passwords[i].GeneratedOnDate;
+
+               //var listelement = <li id="{id}" class="listelement">
+               //     <p class="title defaulttext">{SiteDescription}</p>
+               //     <div class="indicator"></div>
+               //     <button onClick={this.onOpenEdit} class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
+               //     <button class="retrievepassword listbtn">Retrieve Password</button>
+               // </li>
+               // ullist.appendChild(listelement)
+                console.log(listelement);
+                
+            }
+
+        });
     }
 
     //Will use method from our AuthService Class
