@@ -22,6 +22,18 @@ class Dashboard extends React.Component {
             openE: false,
         };
     }
+
+    componentDidMount() {
+        //Get passwords from database
+        fetch('/distributor/passwords')
+            .then((resp) => resp.json())
+            .then(function (data) {
+             let info = data.results; //Get the results
+                console.log(data);
+            })
+
+    }
+
     //Will use method from our AuthService Class
     handleLogout() {
         Auth.logout()
@@ -88,9 +100,7 @@ class Dashboard extends React.Component {
                 .then((response) => {
                     console.log(response)
                 });
-        }  
-
-        
+        }        
     }
 
     onOpenAuthenticate = () => {
@@ -434,5 +444,5 @@ class Dashboard extends React.Component {
             );
     }
 }
-//export default Dashboard
+
 export default withAuth(Dashboard);

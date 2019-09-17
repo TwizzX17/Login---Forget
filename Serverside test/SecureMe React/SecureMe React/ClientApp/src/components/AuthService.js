@@ -1,12 +1,7 @@
 ﻿import decode from 'jwt-decode';
 
 export default class AuthService {
-    constructor(domain) {
-        this.domain = domain || 'http://localhost:3000';
-        //this.fetch = this.fetch.bind(this)
-        this.login = this.login.bind(this)
-        this.getProfile = this.getProfile.bind(this)
-    }
+
     login(username, password) {
         //Static header information
         let standardheader = {
@@ -45,7 +40,12 @@ export default class AuthService {
     loggedIn() {
         const token = this.getToken();
         return !!token && !this.isTokenExpired(token)
-        }
+    }
+
+    //Removes our token from LocalStorage
+    logout() {
+        localStorage.removeItem('id_token')
+    }
 
     //Makes sure the token we find in the users browser isnt expired
     //If the current date now in minuts is above the expiration date in the cookie, the cookie is too old
@@ -53,7 +53,6 @@ export default class AuthService {
         //try error for if we are missing the token.
         try {
             const decoded = decode(token);
-            console.log(Date.now());
             if (decoded.exp < Date.now() / 1000) {
                 return true
             } else {
@@ -63,11 +62,6 @@ export default class AuthService {
         catch (e) {
             return false;
         }
-        }
-
-    //Removes our token from LocalStorage
-    logout() {
-        localStorage.removeItem('id_token')
     }
 
     //Decodes the token for information

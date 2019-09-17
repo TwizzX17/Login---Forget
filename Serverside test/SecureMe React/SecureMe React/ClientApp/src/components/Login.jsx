@@ -32,8 +32,6 @@ class Login extends React.Component {
 
     render() {
         return (
-            
-            
             <div id="login-main">
                 <div>
                     <div>
@@ -55,27 +53,9 @@ class Login extends React.Component {
                             <input class="loginsubmit" type="submit" value="Login" onClick={this.handleFormSubmit} />
                             </div>
 
-
-
-
-
-                        {/*
-
-
-                            <div id="boxtitle">2FA</div>
-                            <div>
-                                <img style="display: block; width: 135px; height: 135px; margin-left: auto; margin-right: auto;" src="@ViewBag.BarcodeImageUrl" />
-                            </div>
-                            <div class="formtitles" style="text-align: center; padding-bottom: 17px;">Manual Setup Code : @ViewBag.SetupCode</div>
-                            <div>
-                                <input type="text" name="CodeDigit" class="loginforms" />
-                                <input type="submit" class="loginsubmit" />
-                            </div>
-                        */}
                         </div>
                 </div>
-            </div>
-            
+            </div>   
             );
     }
 }

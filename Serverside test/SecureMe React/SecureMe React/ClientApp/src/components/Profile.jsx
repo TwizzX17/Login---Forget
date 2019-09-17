@@ -113,14 +113,10 @@ class Login extends React.Component {
             phone.innerHTML = "";
         }
 
-
-
-
-
         if (validate === 0) {
             //if all states are ok, we get here
             //Fetch post to server
-            fetch('/Profile/submitdata', {
+            fetch('/Profile', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
