@@ -14,12 +14,14 @@ var Auth = new AuthService();
 class Dashboard extends React.Component {
     constructor() {
         super();
+        this.onOpenEdit = this.onOpenEdit.bind(this)
         //Sets  the value false as default
         //state can contain properties
         this.state = {
             openP: false,
             openA: false,
             openE: false,
+            focus: "",
             AllPass: []
             ,
         };
@@ -42,12 +44,12 @@ class Dashboard extends React.Component {
             console.log(this.state.AllPass[0]);
 
             let ullist = document.getElementById("ullist")
-            for (var i = 0; i <= passwords.length; i++) {
-                let id = passwords[i].Id;
-                let password = passwords[i].Passwords;
-                let SiteDescription = passwords[i].SiteDescription;
-                let SiteLocation = passwords[i].SiteLocation;
-                let GeneratedOnDate = passwords[i].GeneratedOnDate;
+            //for (var i = 0; i <= passwords.length; i++) {
+            //    let id = passwords[i].Id;
+            //    let password = passwords[i].Passwords;
+            //    let SiteDescription = passwords[i].SiteDescription;
+            //    let SiteLocation = passwords[i].SiteLocation;
+            //    let GeneratedOnDate = passwords[i].GeneratedOnDate;
 
                //var listelement = <li id="{id}" class="listelement">
                //     <p class="title defaulttext">{SiteDescription}</p>
@@ -56,9 +58,9 @@ class Dashboard extends React.Component {
                //     <button class="retrievepassword listbtn">Retrieve Password</button>
                // </li>
                // ullist.appendChild(listelement)
-                console.log(listelement);
+                //console.log(listelement);
                 
-            }
+            //}
 
         });
     }
@@ -177,9 +179,11 @@ class Dashboard extends React.Component {
         helpbox.style.display = "none";
     }
 
-    onOpenEdit = () => {
+    onOpenEdit = (e) => {
+        //Focusid defines which password was selected when button was pressed.
+        const focusid = e.currentTarget.dataset.id
         this.setState({ openE: true });
-        console.log(this.setState)
+        this.setState({ focus: focusid });
     }
 
     onCloseEditO = () => {
@@ -187,6 +191,7 @@ class Dashboard extends React.Component {
     }
 
     onCloseEdit = () => {
+        const focusid = this.state.focus;
         const feedback = "This field cannot be empty";
         const lvalue = document.getElementById("Elabel").value;
         const Dvalue = document.getElementById("Edomane").value;
@@ -226,8 +231,9 @@ class Dashboard extends React.Component {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${Auth.getToken()}`,
                 },
-                body: JSON.stringify({ label: lvalue, domane: Dvalue, custompass: Cvalue }),
+                body: JSON.stringify({ label: lvalue, domane: Dvalue, custompass: Cvalue, passwordid: focusid }),
             })
                 .then(response => response.json()) // response.json() returns a promise
                 .then((response) => {
@@ -339,7 +345,6 @@ class Dashboard extends React.Component {
                         <input id="Ecustompass" type="text" />
                         <button onClick={this.onCloseEdit}>Save Changes</button>
                     </div>
-
                 </ReactModal>
 
                 <div id="Dashboard-main" class="main">
@@ -358,114 +363,24 @@ class Dashboard extends React.Component {
                         </div>
                     </div>
                     <ul id="ullist">
-                        <li class="listelement">
-                            <p class="title defaulttext">Facebook</p>
-                            <div class="indicator"></div>
-                            <button onClick={this.onOpenEdit} class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Google</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Twitch</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Amazon</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Reddit</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Steam</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Brazzers</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Facebook</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Amazon</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Reddit</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Steam</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Brazzers</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Facebook</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Amazon</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Reddit</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Steam</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Brazzers</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
-                        <li class="listelement">
-                            <p class="title defaulttext">Facebook</p>
-                            <div class="indicator"></div>
-                            <button class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                            <button class="retrievepassword listbtn">Retrieve Password</button>
-                        </li>
+                        {
+                            this.state.AllPass.map(Li => {
+
+
+                                const element = <li key={Li.Id} className="listelement">
+                                    <p className="title defaulttext">{Li.SiteDescription}</p>
+                                    <div className="indicator"></div>
+                                    <button onClick={this.onOpenEdit} data-id={Li.Id} className="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
+                                    <button data-id={Li.Id} className="retrievepassword listbtn">Retrieve Password</button>
+                                </li>
+
+
+                                
+                                //Returns the list components with information from state
+
+                                return element
+                            })
+                        }
                     </ul>
                 </div>
             </div>

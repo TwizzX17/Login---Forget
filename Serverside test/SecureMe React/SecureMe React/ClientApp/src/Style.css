@@ -205,7 +205,6 @@ button, input, div {
 
 
 .main-title {
-    position:relative;
     display: flex;
     flex-direction: row;
     margin-bottom: -25px;
