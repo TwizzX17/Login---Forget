@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\Serverside test",
-    "\\Serverside test\\SecureApp"
+    "\\Serverside test\\SecureMe React",
+    "\\Serverside test\\SecureMe React\\SecureMe React",
+    "\\Serverside test\\SecureMe React\\SecureMe React\\Controllers"
   ],
-  "SelectedNode": "\\Serverside test\\SecureApp\\SecureApp.sln",
+  "SelectedNode": "\\Serverside test\\SecureMe React\\SecureMe React.sln",
   "PreviewInSolutionExplorer": false
 }

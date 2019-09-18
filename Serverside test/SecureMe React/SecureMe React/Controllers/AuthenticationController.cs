@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -7,6 +8,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using SecureMeShared.Models;
+using SecureMeShared;
+using Microsoft.EntityFrameworkCore;
+using SecureMe_React.ViewModels;
 
 namespace SecureMe_React.Controllers
 {
@@ -24,8 +29,9 @@ namespace SecureMe_React.Controllers
 
         [AllowAnonymous]
         [HttpPost("[action]")]
-        public IActionResult Login([FromBody]UserModel login)
+        public IActionResult Login([FromBody]User login)
         {
+            
             IActionResult response = Unauthorized();
             var user = AuthenticateUser(login);
 
@@ -38,16 +44,16 @@ namespace SecureMe_React.Controllers
             return response;
         }
 
-        private string GenerateJSONWebToken(UserModel userInfo)
+        private string GenerateJSONWebToken(User userInfo)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            
+
             //Adding Specific infomation to our new variable 'Claim'
             var claims = new[] {
-            new Claim(JwtRegisteredClaimNames.Email, userInfo.EmailAddress),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-    };
+                new Claim(JwtRegisteredClaimNames.NameId, userInfo.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        };
 
             //Here we create and add information to our token
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
@@ -59,26 +65,16 @@ namespace SecureMe_React.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        private UserModel AuthenticateUser(UserModel login)
+        private User AuthenticateUser(User login)
         {
-            UserModel user = null;
+            //Default equals null
+            User user = null;
 
-            //Validate the User Credentials  
-            //Demo Purpose, I have Passed HardCoded User Information  
-            if (login.Username == "Jignesh")
-            {
-                user = new UserModel { Username = "Jignesh Trivedi", EmailAddress = "test.btest@gmail.com" };
-            }
+            Login UserL = new Login();
+            user = UserL.UserLogin(login.Email, login.MasterPass);
             return user;
         }
 
-
-        //test
-        [HttpGet("[action]")]
-        public string test()
-        {
-            return "testboy";
-        }
 
     }
 }

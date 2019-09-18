@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SecureMeShared.Models
 {
-    class DBInitCoreContext : DbContext
+    public class DBInitCoreContext : DbContext
     {
         public DbSet<User> Users { get; set; }
 

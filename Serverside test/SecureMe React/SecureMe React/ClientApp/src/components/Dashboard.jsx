@@ -8,7 +8,6 @@ import AuthService from './AuthService';
 import withAuth from './withAuth';
 
 
-
 var Auth = new AuthService();
 
 class Dashboard extends React.Component {
@@ -22,11 +21,16 @@ class Dashboard extends React.Component {
             openA: false,
             openE: false,
             focus: "",
-            AllPass: []
-            ,
+            AllPass: [],
         };
     }
     componentDidMount() {
+        //Get passwords from database
+        this.LoadAllPasswords();
+    }
+
+
+    LoadAllPasswords() {
         //Get passwords from database
         fetch('/Distributor/Passwords', {
             method: "GET",
@@ -37,44 +41,17 @@ class Dashboard extends React.Component {
         }).then(function (response) {
             return response.json();
         }).then((response) => {
-            this.setState({ AllPass: response});
-        }).then((appendpasswords) => {
-            let passwords = this.state.AllPass;
-            console.log(passwords);
-            console.log(this.state.AllPass[0]);
-
-            let ullist = document.getElementById("ullist")
-            //for (var i = 0; i <= passwords.length; i++) {
-            //    let id = passwords[i].Id;
-            //    let password = passwords[i].Passwords;
-            //    let SiteDescription = passwords[i].SiteDescription;
-            //    let SiteLocation = passwords[i].SiteLocation;
-            //    let GeneratedOnDate = passwords[i].GeneratedOnDate;
-
-               //var listelement = <li id="{id}" class="listelement">
-               //     <p class="title defaulttext">{SiteDescription}</p>
-               //     <div class="indicator"></div>
-               //     <button onClick={this.onOpenEdit} class="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-               //     <button class="retrievepassword listbtn">Retrieve Password</button>
-               // </li>
-               // ullist.appendChild(listelement)
-                //console.log(listelement);
-                
-            //}
-
+            //Delivers the response to the state as a array
+            this.setState({ AllPass: response });
         });
     }
+
 
     //Will use method from our AuthService Class
     handleLogout() {
         Auth.logout()
         this.props.history.replace('/login');
     }
-
-    //Sets  the value false as default
-    //state can contain properties
-
-
 
     //Changes the property in state on an onclick event
     //setState method is best practice because it calls the render method 
@@ -120,16 +97,19 @@ class Dashboard extends React.Component {
         }
         if (valid1 === 0 && valid2 === 0 && valid3 === 0) {
             this.setState({ openP: false });
-            fetch('/dashboard/add-password', {
+            fetch('/Distributor/AddPassword', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${Auth.getToken()}`,
                 },
-                body: JSON.stringify({ label: lvalue, url: uvalue, custompass: cvalue }),
-                })
+                body: JSON.stringify({ SiteDescription: lvalue, SiteLocation: uvalue, Passwords: cvalue }),
+            })
+                //When the password has been sent, on success, we want refresh the passwords form the database to get updated
                 .then(response => response.json()) // response.json() returns a promise
                 .then((response) => {
                     console.log(response)
+                    this.LoadAllPasswords();
                 });
         }        
     }
@@ -227,17 +207,21 @@ class Dashboard extends React.Component {
         if (valid1 === 0 && valid2 === 0 && valid3 === 0) {
 
             this.setState({ openE: false });
-            fetch('/dashboard/add-password', {
+            fetch('/Distributor/EditPassword', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${Auth.getToken()}`,
                 },
-                body: JSON.stringify({ label: lvalue, domane: Dvalue, custompass: Cvalue, passwordid: focusid }),
+                body: JSON.stringify({ SiteDescription: lvalue, SiteLocation: Dvalue, Passwords: Cvalue, Id: focusid }),
             })
-                .then(response => response.json()) // response.json() returns a promise
+
+                //If successful edit the LI element to update version
+                //Will be written when we have response ready at server level
+                .then(response => response.json())
                 .then((response) => {
                     console.log(response)
+                    this.LoadAllPasswords();
                 });
         }
     }
@@ -352,7 +336,6 @@ class Dashboard extends React.Component {
                         <div class="liststatus defaulttext">Search Sitename / App</div>
                         <div class="main-title">
                             <input id="search-li" type="text" placeholder="Search..." onKeyUp={this.filterList} />
-                            
                             <img alt="helpimage" src={Help} onMouseOver={this.onHoverOpen} onMouseOut={this.onHoverClose}/>
                             <div id="helpbox">
                                 <h1>Password security indicator:</h1>
@@ -365,19 +348,13 @@ class Dashboard extends React.Component {
                     <ul id="ullist">
                         {
                             this.state.AllPass.map(Li => {
-
-
                                 const element = <li key={Li.Id} className="listelement">
                                     <p className="title defaulttext">{Li.SiteDescription}</p>
                                     <div className="indicator"></div>
                                     <button onClick={this.onOpenEdit} data-id={Li.Id} className="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
                                     <button data-id={Li.Id} className="retrievepassword listbtn">Retrieve Password</button>
                                 </li>
-
-
-                                
                                 //Returns the list components with information from state
-
                                 return element
                             })
                         }

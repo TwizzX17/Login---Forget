@@ -30,7 +30,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\OLogin.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
     <Folder Include="ClientApp\src\assets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SecureMeShared\SecureMeShared.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

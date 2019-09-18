@@ -12,6 +12,7 @@ namespace SecureMe_React.Controllers
         public string SiteDescription { get; set; }
         public string SiteLocation { get; set; }
         public string GeneratedOnDate { get; set; }
+        public int UserId { get; set; }
 
 
     }

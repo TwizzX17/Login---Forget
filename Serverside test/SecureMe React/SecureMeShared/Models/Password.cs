@@ -14,19 +14,19 @@ namespace SecureMeShared.Models
 
         public string PasswordHash { get; set; }
 
-        [Display(Name = "")]
+        //[Display(Name = "Customer Id")]
         [ForeignKey("User")]
         public int UserId { get; set; }
 
-        [Display(Name = "")]
+        //[Display(Name = "")]
         [Required, StringLength(50)]
         public string SiteDescription { get; set; }
 
-        [Display(Name = "")]
+        //[Display(Name = "")]
         [Required, StringLength(100), Url]
         public string SiteLocation { get; set; }
 
-        [Display(Name = "")]
+        //[Display(Name = "")]
         public DateTime GeneratedOn { get; set; }
 
         public User User { get; set; }

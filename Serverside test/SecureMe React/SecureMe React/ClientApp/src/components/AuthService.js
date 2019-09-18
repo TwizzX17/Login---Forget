@@ -2,7 +2,7 @@
 
 export default class AuthService {
 
-    login(username, password) {
+    login(email, password) {
         //Static header information
         let standardheader = {
             "Accept": "application/json",
@@ -15,7 +15,7 @@ export default class AuthService {
         return fetch('/Authentication/Login', {
             method: "POST",
             headers: standardheader,
-            body: JSON.stringify({ username: username, password: password }),
+            body: JSON.stringify({ Email: email, MasterPass: password }),
         })
             .then(this._checkStatus)
             .then(response => response.json())

@@ -17,23 +17,23 @@ namespace SecureMeShared.Models
         // NECESSARY CODE
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Display(Name = "")]
+        //[Display(Name = "")]
         public int Id { get; set; }
         [Required, StringLength(50), EmailAddress]
 
         public string Email { get; set; }
         [Required, StringLength(32)]
-        [Display(Name = "Password")]
+        //[Display(Name = "Password")]
         public string MasterPass { get; set; }
         // NECESSARY CODE END
 
         // USER INFO
         [StringLength(30)]
-        [Display(Name = "First Name")]
+        //[Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [StringLength(40)]
-        [Display(Name = "Last Name")]
+        //[Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [StringLength(50)]
@@ -46,7 +46,7 @@ namespace SecureMeShared.Models
         public string Zip { get; set; }
         public bool IsAuthenticated { get; set; }
 
-        [Display(Name = "Phone number")]
+        //[Display(Name = "Phone number")]
         public int Phone { get; set; }
         // USER INFO END
 

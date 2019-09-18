@@ -16,7 +16,7 @@ class Login extends React.Component {
         this.state = {
             openP: false,
             openA: false,
-            Pemail: "test@gmail.com",
+            Pemail: "",
             Pfirstname: "",
             Plastname: "",
             Pcountry: "",
@@ -31,19 +31,26 @@ class Login extends React.Component {
 
 
         //Get data for our profile states
-        fetch(/profile/)
-            .then((resp) => resp.json())
-            .then(function (data) {
-                let info = data.results; //Get the results
-                this.setState({ Pemail: info.email });
-                this.setState({ Pfirstname: info.firstname });
-                this.setState({ Plastname: info.lastname });
-                this.setState({ Pcountry: info.country });
-                this.setState({ Pcity: info.city });
-                this.setState({ Pstreet: info.street });
-                this.setState({ Pzip: info.zip });
-                this.setState({ Pphone: info.phone });
-            })
+        fetch('/Distributor/Profile', {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Auth.getToken()}`,
+            }
+        }).then(function (response) {
+            return response.json();
+        }).then((response) => {
+            //Delivers the response to the state as a array
+            let info = response; //Get the results
+            this.setState({ Pemail: info.EmailAddress });
+            this.setState({ Pfirstname: info.FirstName });
+            this.setState({ Plastname: info.LastName });
+            this.setState({ Pcountry: info.Country });
+            this.setState({ Pcity: info.City });
+            this.setState({ Pstreet: info.Street });
+            this.setState({ Pzip: info.Zip });
+            this.setState({ Pphone: info.Phone });
+        });
     }
 
     //Will use method from our AuthService Class
@@ -53,7 +60,6 @@ class Login extends React.Component {
     }
 
     onSaveChanges = () => {
-
         const firstname = document.getElementById("eifirstname");
         const lastname = document.getElementById("eilastname")
         const country = document.getElementById("eicountry")
@@ -116,10 +122,11 @@ class Login extends React.Component {
         if (validate === 0) {
             //if all states are ok, we get here
             //Fetch post to server
-            fetch('/Profile', {
+            fetch('/Distributor/ProfileSave', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${Auth.getToken()}`,
                 },
                 body: JSON.stringify({
                     Email: this.state.Pemail, //50
@@ -131,7 +138,7 @@ class Login extends React.Component {
                     Zip: this.state.Pzip,//10
                     Phone: this.state.Pphone//
                 }),
-                })
+                })//If Success, we want to load in the newest information from the server. (To get the actually stored information to the user)
                 .then(response => response.json()) // response.json() returns a promise
                 .then((response) => {
                     console.log(response)
@@ -218,20 +225,20 @@ class Login extends React.Component {
         }
         if (valid1 === 0 && valid2 === 0 && valid3 === 0) {
             this.setState({ openP: false });
-            fetch('/dashboard/add-password', {
+            fetch('/Distributor/AddPassword', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${Auth.getToken()}`,
                 },
                 body: JSON.stringify({ label: lvalue, url: uvalue, custompass: cvalue }),
             })
+                //When the password has been sent, on success, we want refresh the passwords form the database to get updated
                 .then(response => response.json()) // response.json() returns a promise
                 .then((response) => {
                     console.log(response)
                 });
         }
-
-
     }
 
     onOpenAuthenticate = () => {
