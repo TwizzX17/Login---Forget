@@ -12,7 +12,9 @@ namespace SecureMeShared.Models
         public User()
         {
             Passwords = new List<Password>();
+            UserInfos = new List<UserInfo>();
         }
+
 
         // NECESSARY CODE
         [Key]
@@ -27,31 +29,9 @@ namespace SecureMeShared.Models
         public string MasterPass { get; set; }
         // NECESSARY CODE END
 
-        // USER INFO
-        [StringLength(30)]
-        //[Display(Name = "First Name")]
-        public string FirstName { get; set; }
-
-        [StringLength(40)]
-        //[Display(Name = "Last Name")]
-        public string LastName { get; set; }
-
-        [StringLength(50)]
-        public string Country { get; set; }
-        [StringLength(80)]
-        public string City { get; set; }
-        [StringLength(80)]
-        public string Street { get; set; }
-        [StringLength(10)]
-        public string Zip { get; set; }
-        public bool IsAuthenticated { get; set; }
-
-        //[Display(Name = "Phone number")]
-        public int Phone { get; set; }
-        // USER INFO END
-
         //NAVIGATION
         public virtual ICollection<Password> Passwords { get; set; }
+        public virtual ICollection<UserInfo> UserInfos { get; set; }
         // NAVIGATION END
 
         // METHODS

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SecureMeShared.Models;
 
 namespace SecureMeShared.Migrations
 {
     [DbContext(typeof(DBInitCoreContext))]
-    partial class DBInitCoreContextModelSnapshot : ModelSnapshot
+    [Migration("20190918222554_nullable phone")]
+    partial class nullablephone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,34 +63,14 @@ namespace SecureMeShared.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("MasterPass")
-                        .IsRequired()
-                        .HasMaxLength(32);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("User","dbo");
-
-                    b.HasData(
-                        new { Id = 1, Email = "Email@Example.com", MasterPass = "VerySafe123" },
-                        new { Id = 2, Email = "Email2@Example.com", MasterPass = "Unsafe" }
-                    );
-                });
-
-            modelBuilder.Entity("SecureMeShared.Models.UserInfo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<string>("City")
                         .HasMaxLength(80);
 
                     b.Property<string>("Country")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("FirstName")
@@ -99,24 +81,25 @@ namespace SecureMeShared.Migrations
                     b.Property<string>("LastName")
                         .HasMaxLength(40);
 
+                    b.Property<string>("MasterPass")
+                        .IsRequired()
+                        .HasMaxLength(32);
+
                     b.Property<int?>("Phone");
 
                     b.Property<string>("Street")
                         .HasMaxLength(80);
-
-                    b.Property<int>("UserId");
 
                     b.Property<string>("Zip")
                         .HasMaxLength(10);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserInfo","dbo");
+                    b.ToTable("User","dbo");
 
                     b.HasData(
-                        new { Id = 1, City = "LallaLand", Country = "Dennemarken", FirstName = "Jacopy", IsAuthenticated = false, LastName = "Wick", Phone = 88888888, Street = "Lollypoppy 123", UserId = 1, Zip = "" }
+                        new { Id = 1, Email = "Email@Example.com", IsAuthenticated = false, MasterPass = "VerySafe123" },
+                        new { Id = 2, Email = "Email2@Example.com", IsAuthenticated = false, MasterPass = "Unsafe" }
                     );
                 });
 
@@ -124,14 +107,6 @@ namespace SecureMeShared.Migrations
                 {
                     b.HasOne("SecureMeShared.Models.User", "User")
                         .WithMany("Passwords")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SecureMeShared.Models.UserInfo", b =>
-                {
-                    b.HasOne("SecureMeShared.Models.User", "User")
-                        .WithMany("UserInfos")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -33,14 +33,6 @@ namespace SecureMe_React.Controllers
         [HttpGet("[action]")]
         public IActionResult Passwords()
         {
-            ////This is gold, do not delete
-            //int userid = 1;
-
-            //var passwords = _context.Passwords
-            //    .Include(p => p.User)
-            //    .Where(p => p.UserId == userid)
-            //    .ToList();
-
 
             //Find UserId inside the users JWT
             var jwt = HttpContext.User.Identity as ClaimsIdentity;
@@ -65,7 +57,7 @@ namespace SecureMe_React.Controllers
         [HttpPost("[action]")]
         public IActionResult AddPassword([FromBody]Password PassInfo)
         {
-            //Find Email inside the users JWT
+            //Find UserId inside the users JWT
             var jwt = HttpContext.User.Identity as ClaimsIdentity;
             IEnumerable<Claim> claim = jwt.Claims;
             var NameId = claim.FirstOrDefault().Value;
@@ -76,7 +68,6 @@ namespace SecureMe_React.Controllers
                 {
                     //UserInfo gives us access to the body of the Post Request
                     var test = PassInfo;
-
 
                     //We need confirmation from the database, that the information has been saved successfully
                     string success = "Your information was saved successfully";
@@ -104,7 +95,7 @@ namespace SecureMe_React.Controllers
         [HttpPost("[action]")]
         public IActionResult EditPassword([FromBody]Password PassInfo)
         {
-            //Find Email inside the users JWT
+            //Find UserId inside the users JWT
             var jwt = HttpContext.User.Identity as ClaimsIdentity;
             IEnumerable<Claim> claim = jwt.Claims;
             var NameId = claim.FirstOrDefault().Value;
@@ -143,26 +134,18 @@ namespace SecureMe_React.Controllers
         [HttpGet("[action]")]
         public IActionResult Profile()
         {
-            //Find Email inside the users JWT
+            //Find UserId inside the users JWT
             var jwt = HttpContext.User.Identity as ClaimsIdentity;
             IEnumerable<Claim> claim = jwt.Claims;
             var NameId = claim.FirstOrDefault().Value;
             if (NameId != null)
             {
-                UserModel User = new UserModel
-                {
-                    
-                    EmailAddress = "Jacob@gmail.com",
-                    FirstName = "Jacob",
-                    LastName = "Wistrøm",
-                    Country = "Denmark",
-                    City = "Fredensborg",
-                    Street = "StreetName213123",
-                    Zip = "3480",
-                    Phone = "88888888",
-                };
+                //Searches for UserInfo based on the UserId
+                var UserInfo = _context.UserInfos
+                    .Where(u => u.UserId == Convert.ToInt32(NameId))
+                    .SingleOrDefault();
 
-                var json = JsonConvert.SerializeObject(User, Formatting.Indented);
+                var json = JsonConvert.SerializeObject(UserInfo, Formatting.Indented);
                 IActionResult response = Ok(json);
                 return response;
             }
@@ -173,9 +156,9 @@ namespace SecureMe_React.Controllers
         //API Accepts data from the user to update the information about the user
         [Authorize]
         [HttpPost("[action]")]
-        public IActionResult ProfileSave([FromBody]UserModel UserInfo)
+        public IActionResult ProfileSave([FromBody]UserInfo UserInfo)
         {
-            //Find Email inside the users JWT
+            //Find UserId inside the users JWT
             var jwt = HttpContext.User.Identity as ClaimsIdentity;
             IEnumerable<Claim> claim = jwt.Claims;
             var NameId = claim.FirstOrDefault().Value;
@@ -185,7 +168,20 @@ namespace SecureMe_React.Controllers
                 if(UserInfo != null)
                 {
                     //UserInfo gives us access to the body of the Post Request
-                    var test = UserInfo;
+
+                    _context.UserInfos.Attach(UserInfo);
+
+                    var userentry = _context.Entry(UserInfo);
+
+                    
+
+                    //Disables modification of certain properties
+                    userentry.Property("Id").IsModified = false;
+                    userentry.Property("UserId").IsModified = false;
+                    userentry.Property("IsAuthenticated").IsModified = false;
+                    //userentry.Property("MasterPass").IsModified = false;
+                    _context.Entry(UserInfo).State = EntityState.Modified;
+                    _context.SaveChanges();
 
 
                     //We need confirmation from the database, that the information has been saved successfully

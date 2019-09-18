@@ -42,14 +42,14 @@ class Login extends React.Component {
         }).then((response) => {
             //Delivers the response to the state as a array
             let info = response; //Get the results
-            this.setState({ Pemail: info.EmailAddress });
-            this.setState({ Pfirstname: info.FirstName });
-            this.setState({ Plastname: info.LastName });
-            this.setState({ Pcountry: info.Country });
-            this.setState({ Pcity: info.City });
-            this.setState({ Pstreet: info.Street });
-            this.setState({ Pzip: info.Zip });
-            this.setState({ Pphone: info.Phone });
+            this.setState({ Pemail: info.Email || "" });
+            this.setState({ Pfirstname: info.FirstName || "" });
+            this.setState({ Plastname: info.LastName || "" });
+            this.setState({ Pcountry: info.Country || "" });
+            this.setState({ Pcity: info.City || "" });
+            this.setState({ Pstreet: info.Street || "" });
+            this.setState({ Pzip: info.Zip || "" });
+            this.setState({ Pphone: info.Phone || "" });
         });
     }
 
@@ -68,6 +68,13 @@ class Login extends React.Component {
         const zip = document.getElementById("eizip")
         const phone = document.getElementById("eiphone")
         let validate = 0;
+
+        for (var i = 0; i < 7; i++) {
+
+        }
+
+
+
         //Validate length of inputs.
         if (this.state.Pfirstname.length > 30) {
             //error
@@ -129,7 +136,6 @@ class Login extends React.Component {
                     'Authorization': `Bearer ${Auth.getToken()}`,
                 },
                 body: JSON.stringify({
-                    Email: this.state.Pemail, //50
                     FirstName: this.state.Pfirstname,//30
                     LastName: this.state.Plastname,//40
                     Country: this.state.Pcountry,//50
