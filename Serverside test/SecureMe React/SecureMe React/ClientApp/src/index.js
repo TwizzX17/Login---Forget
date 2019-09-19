@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import CreateAccount from './components/Create-Account';
 import ForgotPass from './components/forgot-pass';
+import NewPass from './components/NewPass';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
 /*
@@ -21,7 +22,8 @@ const routing = (
                 <Route exact path="/" component={Home} />
                 <Route path="/Login" component={Login} />
                 <Route path="/Create-account" component={CreateAccount} />
-                <Route path="/forgot-pass" component={ForgotPass} />
+                <Route exact path="/forgot-pass" component={ForgotPass} />
+                <Route exact path="/forgot-pass/newpass" component={NewPass} />
                 <Route exact path="/Dashboard" component={Dashboard} />
                 <Route exact path="/Dashboard/Profile" component={Profile} />
 

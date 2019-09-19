@@ -22,19 +22,19 @@ class Login extends React.Component {
 
         if (Email.length === null) {
             const errorphrase = "Email field cannot be empty";
-            valid = 0;
+            valid = 1;
         } else {
             const confirmation = "";
         }
         if (Password.length === null) {
             const errorphrase = "Password field cannot be empty";
-            valid = 0;
+            valid = 1;
         } else {
             const confirmation = "";
         }
         if (RPassword.length === null) {
             const errorphrase = "Repeat password field cannot be empty";
-            valid = 0;
+            valid = 1;
         } else {
             const confirmation = "";
         }
