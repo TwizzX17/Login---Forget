@@ -23,7 +23,7 @@ namespace SecureMe_React.Controllers
             _context = new DBInitCoreContext();
         }
 
-
+        
         //API Accepts data from the user to add a password to the collection
         [AllowAnonymous]
         [HttpPost("[action]")]
