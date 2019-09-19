@@ -12,6 +12,10 @@ a {
     text-decoration: none;
 }
 
+button, input, div {
+    outline: none;
+}
+
 #nav {
     position: fixed;
     height: 105px;
@@ -42,6 +46,14 @@ a {
     padding-bottom: 2px;
     margin-right: 10px;
     margin-left: 10px;
+}
+
+    .navbtn:hover {
+        background-color: rgb(70, 72, 83);
+    }
+
+#auth:hover {
+    background-color: rgb(219, 10, 10);
 }
 
 .navbtn1 {
@@ -103,14 +115,13 @@ a {
     position: relative;
 }
 
-
-
 .AddPasswordBox {
     position: fixed;
     background: #4f515d;
     border: 4px solid #4f515d;
+    border-radius: 7px;
     width: 408px;
-    height: 328.7px;
+    height: 375px;
     top: 250px;
     left: 0;
     right: 0;
@@ -119,6 +130,85 @@ a {
     border: solid 1px #3a3b43;
 }
 
+    .AddPasswordBox input {
+        color: #bcbccb;
+    }
+
+.DeletePasswordBox {
+    position: fixed;
+    background: #4f515d;
+    border: 4px solid #4f515d;
+    border-radius: 7px;
+    width: 408px;
+    height: 225px;
+    top: 250px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px #3a3b43;
+}
+
+.Deletepasswordcontent {
+    padding: 0px 10px 0px 10px;
+    text-align: center;
+    font-family: "Segoe UI";
+    color: #bcbccb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 50% 0 50%;
+}
+
+    .Deletepasswordcontent h1 {
+        padding-top: 7px;
+        width: 358px;
+        height: 45px;
+        font-size: 18px;
+        line-height: 1.33;
+        font-weight: normal;
+    }
+
+.Deletepasswordcontent p {
+    width: 358px;
+    height: 20px;
+    font-size: 14px;
+    line-height: 1.36;
+    font-weight: normal;
+    text-align: left;
+    margin: 0px;
+}
+
+.Deletepasswordcontent div{
+    display:flex;
+    flex-direction: row;
+    margin: 40px 0 0 0;
+}
+
+.Deletepasswordcontent button {
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 1.33;
+    font-weight: normal;
+    box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
+    border: solid 1px #7b83d1;
+    color: #ffffff;
+    background-color: #8a91d6;
+    margin-top: 10px;
+    border-radius: 5px;
+    margin: 0 5px 0 5px;
+}
+
+    .Deletepasswordcontent button:hover {
+        background-color: #7b83d1;
+        border-color: #7b83d1;
+    }
+
+.error {
+    color: red;
+}
 .PaswordBoxOverlay {
     position: fixed;
     top: 0;
@@ -128,7 +218,7 @@ a {
     background-color: rgba(0, 0, 0, 0.4);
 }
 .Addpasswordcontent {
-    padding: 10px ;
+    padding: 0px 10px 0px 10px;
     text-align: center;
     font-family: "Segoe UI";
     color: #bcbccb;
@@ -154,6 +244,7 @@ a {
     line-height: 1.36;
     font-weight: normal;
     text-align: left;
+    margin: 0px;
 }
 .Addpasswordcontent input {
     width: 358px;
@@ -164,19 +255,26 @@ a {
     box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px #3a3b43;
     background-color: #454650;
+    margin-bottom: 10px;
 }
-.Addpasswordcontent button {
-    width: 307px;
-    height: 26px;
-    font-size: 14px;
-    line-height: 1.33;
-    font-weight: normal;
-    box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
-    border: solid 1px #3a3b43;
-    color: #ffffff;
-    background-color: #8a91d6;
-    margin-top: 25px;
-}
+    .Addpasswordcontent button {
+        width: 307px;
+        height: 30px;
+        font-size: 14px;
+        line-height: 1.33;
+        font-weight: normal;
+        box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
+        border: solid 1px #7b83d1;
+        color: #ffffff;
+        background-color: #8a91d6;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
+    .Addpasswordcontent button:hover {
+        background-color: #7b83d1;
+        border-color: #7b83d1;
+    }
 
 
 .main-title {
@@ -192,12 +290,37 @@ a {
     border: solid 1px #3a3b43;
     background-color: #454650;
     color: #bcbccb;
-    margin-right: 365px;
+    margin-right: 358px;
     padding-left: 5px;
     margin-left: 7px;
 }
 
-.ullist {
+#helpbox {
+    font-family: "Segoe UI";
+    color: #bcbccb;
+    display: none;
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    background: #4f515d;
+    margin-right: auto;
+    margin-left: auto;
+    top: 15px;
+    right: 0;
+    left: 0;
+    border: 3px solid #2f3037;
+    border-radius: 5px;
+}
+    #helpbox h1 {
+        font-weight: normal;
+        font-size: 20px;
+        margin: 5px 10px 10px 10px;
+    }
+    #helpbox p{
+        margin: 5px 10px 5px 10px;
+    }
+
+#ullist {
     padding-left: 0;
 }
 
@@ -215,9 +338,9 @@ a {
 .listbtn {
     background-color: rgba(86, 88, 100, 0.87);
     width: 181.8px;
-    height: 32px;
+    height: 40px;
     text-align: center;
-    padding: 0;
+    
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.37);
     border: none;
     border-radius: 7px;
@@ -228,11 +351,15 @@ a {
     display: flex;
     justify-content: center;
     padding-top: 7px;
-    padding-bottom: -10px;
+    
     margin-bottom: 10px;
     margin-right: 5px;
     margin-left: 5px;
 }
+
+    .listbtn:hover {
+        background-color: rgb(70, 72, 83);
+    }
 
 .search {
     padding-top: 5px;
@@ -260,7 +387,7 @@ a {
 .title {
     margin-top: 10px;
     width: 425px;
-    padding-right: 200px;
+    padding-right: 140px;
 }
 
 .indicator {
@@ -283,8 +410,19 @@ a {
     width: 89.9px;
 }
 
+.deletepass {
+    width: 30px;
+    height: 30px;
+    margin: 5px 0 0 5px;
+}
+
+    .deletepass:hover {
+        filter: invert(0.5) sepia(1) hue-rotate(200deg) saturate(4) brightness(1);
+    }
+
 .retrievepassword {
     width: 180px;
+    padding-bottom: 10px;
 }
 
 #login-main {
@@ -321,9 +459,22 @@ a {
     margin-top: 24px;
 }
 
-#loginbox {
+.loginbox {
     width: 360px;
     height: 300px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.37);
+    background: #4f515d;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 24px;
+    margin-bottom: 100px;
+    border-radius: 10px;
+}
+
+.forgotpassbox {
+    height: 200px;
+    width: 360px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.37);
     background: #4f515d;
     display: block;
@@ -349,7 +500,7 @@ a {
 }
 
 #boxtitle {
-    width: 103px;
+    width: 175px;
     height: 28px;
     margin-left: auto;
     margin-right: auto;
@@ -453,6 +604,14 @@ a {
     margin-top: 6px;
 }
 
+    .loginsubmit:hover {
+        background-color: #7b83d1;
+        border-color: #7b83d1;
+    }
+
+.Createsubmit {
+    margin-top: 25px;
+}
 #profileset-main {
     display: block;
     margin-left: auto;
@@ -480,30 +639,43 @@ a {
     align-content: center;
     justify-content: center;
     width: 940px;
-    height: 465px;
+    height: 650px;
 }
 
 .profile-flexitem {
     display: flex;
     flex-direction: column;
     width: 390px;
-    ;
-    height: 425px;
+    height: 550px;
     align-items: center;
     padding-top: 42px;
+}
+
+.profile-flexitem p {
+    font-size: 12px;
 }
 
 .profile-set-structure {
     margin-bottom: 60px;
 }
 
+.profile-item-titles-flex {
+    font-weight: normal;
+}
+.profile-item-titles-flex p {
+    font-size:12px;
+    margin:2px;
+    height:15px;
+}
+
 .profile-item-titles {
-    width: 230px;
-    height: 23px;
+    width: 115px;
+    height: 30px;
     font-size: 20px;
     line-height: 1.35;
     color: #bcbccb;
-    padding-bottom: 9px;
+    font-weight: normal;
+    margin: 0;
 }
 
 .profile-set-input {
@@ -516,9 +688,14 @@ a {
     color: #bcbccb;
     font-size: 14px;
     line-height: 1.36;
-    margin-bottom: 7.3px;
     padding-left: 2%;
     padding-right: 2%;
+    margin-bottom:10px;
+}
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .titlecontain {
@@ -545,20 +722,26 @@ a {
 }
 
 #profileset-submit {
-    height: 26px;
+    height: 28px;
     width: 307px;
+    display: block;
     margin: auto;
     box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
     background-color: #8a91d6;
-    text-align: center;
+    border: 2px solid #8a91d6;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
     font-size: 14px;
     line-height: 1.36;
     color: #ffffff;
 }
 
-    #profileset-submit > p {
-        padding-top: 2px;
+    #profileset-submit:hover {
+        background-color: #7b83d1;
+        border-color: #7b83d1;
     }
+
 
 
 

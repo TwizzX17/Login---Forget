@@ -10,9 +10,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Json.Net" Version="1.0.16" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,7 +30,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\OLogin.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
     <Folder Include="ClientApp\src\assets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SecureMeShared\SecureMeShared.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
