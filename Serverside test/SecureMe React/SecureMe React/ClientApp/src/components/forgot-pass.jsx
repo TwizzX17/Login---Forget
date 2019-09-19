@@ -24,12 +24,13 @@ class ForgotPass extends React.Component {
 
         if (valid === 0) {
 
-            fetch('/ForgotPassword/Forgot', {
+            fetch('/ForgotPassword/ForgotPassword', {
                 method: "POST",
                 headers: {
+                    "Accept": "application/json",
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ Id: 0, Email: Email, MasterPass: "" }),
+                body: JSON.stringify({ Id: 0, Email: Email, MasterPass: "NibbaPassword" }),
             }).then(this._checkStatus)
                 .then(
                     response => response.json(),
@@ -39,8 +40,8 @@ class ForgotPass extends React.Component {
                 )
                 .then((response) => {
                     console.log(response)
-                    return Promise.resolve(response);
                     this.props.history.replace('/forgot-pass/NewPass')
+                    return Promise.resolve(response);
                 });
 
         }
