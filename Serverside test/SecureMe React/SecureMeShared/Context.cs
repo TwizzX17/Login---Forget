@@ -23,6 +23,9 @@ namespace SecureMeShared.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
@@ -104,7 +107,9 @@ namespace SecureMeShared.Models
                     Phone = 88888888,
                     IsAuthenticated = false,
                     UserId = 1
-                }); ;
+                });
+
+            
         }
     }
 }

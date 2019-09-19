@@ -22,8 +22,8 @@ namespace SecureMeShared.Models
         //[Display(Name = "")]
         public int Id { get; set; }
         [Required, StringLength(50), EmailAddress]
-
         public string Email { get; set; }
+
         [Required, StringLength(32)]
         //[Display(Name = "Password")]
         public string MasterPass { get; set; }

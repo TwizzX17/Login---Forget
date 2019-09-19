@@ -133,6 +133,79 @@ button, input, div {
     .AddPasswordBox input {
         color: #bcbccb;
     }
+
+.DeletePasswordBox {
+    position: fixed;
+    background: #4f515d;
+    border: 4px solid #4f515d;
+    border-radius: 7px;
+    width: 408px;
+    height: 225px;
+    top: 250px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px #3a3b43;
+}
+
+.Deletepasswordcontent {
+    padding: 0px 10px 0px 10px;
+    text-align: center;
+    font-family: "Segoe UI";
+    color: #bcbccb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 50% 0 50%;
+}
+
+    .Deletepasswordcontent h1 {
+        padding-top: 7px;
+        width: 358px;
+        height: 45px;
+        font-size: 18px;
+        line-height: 1.33;
+        font-weight: normal;
+    }
+
+.Deletepasswordcontent p {
+    width: 358px;
+    height: 20px;
+    font-size: 14px;
+    line-height: 1.36;
+    font-weight: normal;
+    text-align: left;
+    margin: 0px;
+}
+
+.Deletepasswordcontent div{
+    display:flex;
+    flex-direction: row;
+    margin: 40px 0 0 0;
+}
+
+.Deletepasswordcontent button {
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 1.33;
+    font-weight: normal;
+    box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.16);
+    border: solid 1px #7b83d1;
+    color: #ffffff;
+    background-color: #8a91d6;
+    margin-top: 10px;
+    border-radius: 5px;
+    margin: 0 5px 0 5px;
+}
+
+    .Deletepasswordcontent button:hover {
+        background-color: #7b83d1;
+        border-color: #7b83d1;
+    }
+
 .error {
     color: red;
 }
@@ -314,7 +387,7 @@ button, input, div {
 .title {
     margin-top: 10px;
     width: 425px;
-    padding-right: 200px;
+    padding-right: 140px;
 }
 
 .indicator {
@@ -337,9 +410,19 @@ button, input, div {
     width: 89.9px;
 }
 
+.deletepass {
+    width: 30px;
+    height: 30px;
+    margin: 5px 0 0 5px;
+}
+
+    .deletepass:hover {
+        filter: invert(0.5) sepia(1) hue-rotate(200deg) saturate(4) brightness(1);
+    }
+
 .retrievepassword {
     width: 180px;
-    padding-bottom:10px;
+    padding-bottom: 10px;
 }
 
 #login-main {

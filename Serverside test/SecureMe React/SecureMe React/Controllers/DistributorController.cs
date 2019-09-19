@@ -5,11 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Json;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Security.Claims;
-using SecureMeShared;
 using SecureMeShared.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -63,11 +60,58 @@ namespace SecureMe_React.Controllers
             var NameId = claim.FirstOrDefault().Value;
             if (NameId != null)
             {
-
                 if (PassInfo != null)
                 {
-                    //UserInfo gives us access to the body of the Post Request
-                    var test = PassInfo;
+                    //Insert values not defined by frontend
+                    PassInfo.UserId = Convert.ToInt32(NameId);
+                    PassInfo.GeneratedOn = DateTime.Now;
+
+                    //Add PassInfo to database
+                    _context.Add(PassInfo);
+                    _context.SaveChanges();
+
+                    //We need confirmation from the database, that the information has been saved successfully
+                    string success = "Your information was saved successfully";
+                    var json = JsonConvert.SerializeObject(success, Formatting.Indented);
+                    IActionResult response = Ok(json);
+                    return response;
+                }
+                else
+                {
+                    string failure = "An internal error occured";
+                    var json = JsonConvert.SerializeObject(failure, Formatting.Indented);
+                    IActionResult response = Ok(json);
+                    return response;
+                }
+            }
+            else
+            {
+                return BadRequest("Invalid Token");
+            }
+        }
+
+        //API Accepts data from the user to add a password to the collection
+        [Authorize]
+        [HttpPost("[action]")]
+        public IActionResult DeletePassword([FromBody]Password PassInfo)
+        {
+            //Find UserId inside the users JWT
+            var jwt = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claim = jwt.Claims;
+            var NameId = claim.FirstOrDefault().Value;
+            if (NameId != null)
+            {
+                if (PassInfo != null)
+                {
+                    //Insert values not defined by frontend
+                    //PassInfo.Id = Convert.ToInt32(PassInfo.Id);
+                    //var set = _context.Set<TEntity>();
+                    
+                    _context.Passwords.Remove(new Password() { Id = PassInfo.Id });
+                    _context.SaveChanges();
+                    
+
+
 
                     //We need confirmation from the database, that the information has been saved successfully
                     string success = "Your information was saved successfully";
@@ -103,9 +147,18 @@ namespace SecureMe_React.Controllers
             {
                 if (PassInfo != null)
                 {
-                    //UserInfo gives us access to the body of the Post Request
-                    var test = PassInfo;
-                    
+                    //Edit userId in UserInfo to Id from Token
+                    PassInfo.Id = Convert.ToInt32(PassInfo.Id);
+                    PassInfo.UserId = Convert.ToInt32(NameId);
+                    PassInfo.GeneratedOn = DateTime.Now;
+
+                    //PassInfo gives us access to the body of the Post Request
+                    _context.Passwords.Attach(PassInfo);
+
+                    var userentry = _context.Entry(PassInfo);
+                    _context.Entry(PassInfo).State = EntityState.Modified;
+                    _context.SaveChanges();
+
                     //We need confirmation from the database, that the information has been saved successfully
                     string success = "Your information was saved successfully";
                     var json = JsonConvert.SerializeObject(success, Formatting.Indented);

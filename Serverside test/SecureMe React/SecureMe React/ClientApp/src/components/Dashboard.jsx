@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/Logo.svg';
 import Edit from '../assets/Edit.svg';
 import Help from '../assets/help.svg';
+import { ReactComponent as Logo } from '../assets/Delete.svg';
 import AuthService from './AuthService';
 import withAuth from './withAuth';
 
@@ -20,7 +21,9 @@ class Dashboard extends React.Component {
             openP: false,
             openA: false,
             openE: false,
+            openD: false,
             focus: "",
+            EditTitle: "",
             AllPass: [],
         };
     }
@@ -52,6 +55,44 @@ class Dashboard extends React.Component {
         Auth.logout()
         this.props.history.replace('/login');
     }
+
+
+
+    onOpenDeletePassword = (e) => {
+        const focusid = e.currentTarget.dataset.id
+        this.setState({ openD: true });
+        this.setState({ focus: focusid });
+        this.showPassName(focusid);
+    }
+
+    onCloseDeletePasswordO = () => {
+        this.setState({ openD: false });
+    }
+
+    onCloseDeletePassword = () => {
+        const passwordid = parseInt(this.state.focus);
+        const password = this.state.AllPass;
+        const SD = password.find(item => item.Id === passwordid).SiteDescription;
+        const SL = password.find(item => item.Id === passwordid).SiteLocation;
+
+            this.setState({ openD: false });
+            fetch('/Distributor/DeletePassword', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${Auth.getToken()}`,
+                },
+                body: JSON.stringify({ Id: passwordid, SiteDescription: SD, SiteLocation: SL }),
+            })
+                //When the password has been sent, on success, we want refresh the passwords form the database to get updated
+                .then(response => response.json()) // response.json() returns a promise
+                .then((response) => {
+                    console.log(response)
+                    this.LoadAllPasswords();
+                });
+        
+    }
+
 
     //Changes the property in state on an onclick event
     //setState method is best practice because it calls the render method 
@@ -103,7 +144,7 @@ class Dashboard extends React.Component {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${Auth.getToken()}`,
                 },
-                body: JSON.stringify({ SiteDescription: lvalue, SiteLocation: uvalue, Passwords: cvalue }),
+                body: JSON.stringify({ SiteDescription: lvalue, SiteLocation: uvalue, PasswordHash: cvalue }),
             })
                 //When the password has been sent, on success, we want refresh the passwords form the database to get updated
                 .then(response => response.json()) // response.json() returns a promise
@@ -164,6 +205,7 @@ class Dashboard extends React.Component {
         const focusid = e.currentTarget.dataset.id
         this.setState({ openE: true });
         this.setState({ focus: focusid });
+        this.showPassName(focusid);
     }
 
     onCloseEditO = () => {
@@ -213,7 +255,7 @@ class Dashboard extends React.Component {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${Auth.getToken()}`,
                 },
-                body: JSON.stringify({ SiteDescription: lvalue, SiteLocation: Dvalue, Passwords: Cvalue, Id: focusid }),
+                body: JSON.stringify({ SiteDescription: lvalue, SiteLocation: Dvalue, PasswordHash: Cvalue, Id: focusid }),
             })
 
                 //If successful edit the LI element to update version
@@ -226,7 +268,12 @@ class Dashboard extends React.Component {
         }
     }
 
-
+    showPassName = (focus) => {
+        const password = this.state.AllPass;
+        var intfocus = parseInt(focus)
+        var SiteName = password.find(item => item.Id === intfocus).SiteDescription;
+        this.state.EditTitle = SiteName;
+    }
 
 
     filterList = () => {
@@ -316,8 +363,11 @@ class Dashboard extends React.Component {
                     overlayClassName="PaswordBoxOverlay"
                     onRequestClose={this.onCloseEditO}>
 
+                    {/*
+                     Preload information into the fields
+                     */}
                     <div class="Addpasswordcontent">
-                        <h1>Edit Password - *Facebook*</h1>
+                        <h1>Edit Password - {this.state.EditTitle}</h1>
                         <p>Label</p>
                         <p id="ELfeedback" className="error"></p>
                         <input id="Elabel" type="text" />
@@ -326,8 +376,25 @@ class Dashboard extends React.Component {
                         <input id="Edomane" type="text" />
                         <p>Custom password (Optional)</p>
                         <p id="ECfeedback" className="error"></p>
-                        <input id="Ecustompass" type="text" />
+                        <input id="Ecustompass" type="password" />
                         <button onClick={this.onCloseEdit}>Save Changes</button>
+                    </div>
+                </ReactModal>
+
+                <ReactModal
+                    isOpen={this.state.openD}
+                    contentLabel="DeletePassword"
+                    className="DeletePasswordBox"
+                    overlayClassName="PaswordBoxOverlay"
+                    onRequestClose={this.onCloseDeletePasswordO}>
+
+                    <div class="Deletepasswordcontent">
+                        <h1>Delete Password - {this.state.EditTitle}</h1>
+                        <p>This action will remove your password permanently</p>
+                        <div>
+                            <button onClick={this.onCloseDeletePassword}>Delete Password</button>
+                            <button onClick={this.onCloseDeletePasswordO}>Cancel</button>
+                        </div>
                     </div>
                 </ReactModal>
 
@@ -353,6 +420,7 @@ class Dashboard extends React.Component {
                                     <div className="indicator"></div>
                                     <button onClick={this.onOpenEdit} data-id={Li.Id} className="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
                                     <button data-id={Li.Id} className="retrievepassword listbtn">Retrieve Password</button>
+                                    <Logo onClick={this.onOpenDeletePassword} data-id={Li.Id} className="deletepass" />
                                 </li>
                                 //Returns the list components with information from state
                                 return element
