@@ -73,8 +73,6 @@ class Login extends React.Component {
 
         }
 
-
-
         //Validate length of inputs.
         if (this.state.Pfirstname.length > 30) {
             //error
@@ -149,13 +147,7 @@ class Login extends React.Component {
                 .then((response) => {
                     console.log(response)
                 });
-        }
-            
-        
-
-
-
-        
+        }   
     }
 
     handleChangeFirstname = (event) => {

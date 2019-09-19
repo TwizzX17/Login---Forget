@@ -167,14 +167,14 @@ namespace SecureMe_React.Controllers
 
                 if(UserInfo != null)
                 {
-                    //UserInfo gives us access to the body of the Post Request
+                    //Edit userId in UserInfo to Id from Token
+                    UserInfo.Id = Convert.ToInt32(NameId);
+                    UserInfo.UserId = Convert.ToInt32(NameId);
 
+                    //UserInfo gives us access to the body of the Post Request
                     _context.UserInfos.Attach(UserInfo);
 
                     var userentry = _context.Entry(UserInfo);
-
-                    
-
                     //Disables modification of certain properties
                     userentry.Property("Id").IsModified = false;
                     userentry.Property("UserId").IsModified = false;

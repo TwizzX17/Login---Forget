@@ -14,7 +14,6 @@ namespace SecureMeShared.Models
     public class DBInitCoreContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-
         public DbSet<Password> Passwords { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
 
