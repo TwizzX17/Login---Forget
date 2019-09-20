@@ -7,7 +7,8 @@ import Help from '../assets/help.svg';
 import { ReactComponent as Logo } from '../assets/Delete.svg';
 import AuthService from './AuthService';
 import withAuth from './withAuth';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+//import { CopyToClipboard } from 'clipboard-copy';
+import { toClipboard } from 'copee';
 
 var Auth = new AuthService();
 
@@ -60,15 +61,14 @@ class Dashboard extends React.Component {
     onRetrievePassword = (e) => {
         const focusid = e.currentTarget.dataset.id
         this.setState({ focus: focusid });
-        const rPass = this.showRPass(focusid);
-        this.setState({ Rpassword: rPass })
+        const success = toClipboard(this.showRPass(focusid));
     }
 
     showRPass = (focus) => {
         const password = this.state.AllPass;
         var intfocus = parseInt(focus)
-        var SiteName = password.find(item => item.Id === intfocus).SiteDescription;
-        this.state.EditTitle = SiteName;
+        var SitePass = password.find(item => item.Id === intfocus).PasswordHash;
+        return SitePass;
     }
 
 
@@ -433,7 +433,7 @@ class Dashboard extends React.Component {
                                     <p className="title defaulttext">{Li.SiteDescription}</p>
                                     <div className="indicator"></div>
                                     <button onClick={this.onOpenEdit} data-id={Li.Id} className="edit-li listbtn">Edit<img alt="editimg" src={Edit} /></button>
-                                    <CopyToClipboard onClick={this.onRetrievePassword} text={this.state.Rpassword}><button data-id={Li.Id} className="retrievepassword listbtn">Retrieve Password</button></CopyToClipboard>
+                                    <button onClick={this.onRetrievePassword} data-id={Li.Id} className="retrievepassword listbtn">Retrieve Password</button>
                                     <Logo onClick={this.onOpenDeletePassword} data-id={Li.Id} className="deletepass" />
                                 </li>
                                 //Returns the list components with information from state
