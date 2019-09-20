@@ -20,26 +20,26 @@ class Login extends React.Component {
         const RPassword = document.getElementById("RPassword").value;
         let valid = 0;
 
-        if (Email.length === null) {
-            const errorphrase = "Email field cannot be empty";
+        if (Email.length === 0) {
+            document.getElementById("CEerror").innerHTML = "Email field cannot be empty";
             valid = 1;
         } else {
             const confirmation = "";
         }
-        if (Password.length === null) {
-            const errorphrase = "Password field cannot be empty";
+        if (Password.length === 0) {
+            document.getElementById("CPerror").innerHTML = "Password field cannot be empty";
             valid = 1;
         } else {
             const confirmation = "";
         }
-        if (RPassword.length === null) {
-            const errorphrase = "Repeat password field cannot be empty";
+        if (RPassword.length === 0) {
+            document.getElementById("CPRerror").innerHTML = "Repeat password field cannot be empty";
             valid = 1;
         } else {
             const confirmation = "";
         }
         if (Password !== RPassword) {
-            const errorphrase = "The passwords must match";
+            alert("The passwords must match");
             valid = 1;
         }
         if (valid === 0) {
@@ -51,7 +51,12 @@ class Login extends React.Component {
                 },
                 body: JSON.stringify({ Id: 0, Email: Email, MasterPass: Password }),
             })
-                .then(response => response.json())
+                .then(
+                    response => response.json(),
+                    error => {
+                        alert(error);
+                    }
+                )
                 .then((response) => {
                     console.log(response)
                     this.props.history.replace('/login');
@@ -74,11 +79,14 @@ class Login extends React.Component {
                             <div id="boxtitle">Create Account</div>
                         <div class="formtitles formtitles1"></div>
                             <div id="formsandtitles">
-                                <div class="formtitles">E-mail</div>
+                            <h1 class="formtitles">E-mail</h1>
+                            <p id="CEerror" className="error"></p>
                             <input id="Email" class="loginforms" type="text"/>
-                                <div class="formtitles formtitles2">Password</div>
+                            <h1 class="formtitles formtitles2">Password</h1>
+                            <p id="CPerror" className="error"></p>
                             <input id="Password" class="loginforms" type="Password" />
-                                <div class="formtitles formtitles2">Confirm Password</div>
+                            <h1 class="formtitles formtitles2">Confirm Password</h1>
+                            <p id="CPRerror" className="error"></p>
                             <input id="RPassword" class="loginforms" type="Password" />
                                 
                             <input onClick={this.SubmitInput} className="loginsubmit Createsubmit" type="submit" value="Create Account" />

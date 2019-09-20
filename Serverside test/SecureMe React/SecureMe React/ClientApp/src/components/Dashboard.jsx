@@ -7,7 +7,6 @@ import Help from '../assets/help.svg';
 import { ReactComponent as Logo } from '../assets/Delete.svg';
 import AuthService from './AuthService';
 import withAuth from './withAuth';
-//import { CopyToClipboard } from 'clipboard-copy';
 import { toClipboard } from 'copee';
 
 var Auth = new AuthService();
@@ -26,6 +25,8 @@ class Dashboard extends React.Component {
             focus: "",
             EditTitle: "",
             Rpassword: "",
+            EditDomain: "",
+            EditPassword: "",
             AllPass: [],
         };
     }
@@ -220,6 +221,20 @@ class Dashboard extends React.Component {
         this.setState({ openE: true });
         this.setState({ focus: focusid });
         this.showPassName(focusid);
+
+
+    }
+
+    handleChangeLabel = (event) => {
+        this.setState({ EditTitle: event.target.value });
+    }
+
+    handleChangeDomain = (event) => {
+        this.setState({ EditTitle: event.target.value });
+    }
+
+    handleChangeCPass = (event) => {
+        this.setState({ EditTitle: event.target.value });
     }
 
     onCloseEditO = () => {
@@ -286,7 +301,11 @@ class Dashboard extends React.Component {
         const password = this.state.AllPass;
         var intfocus = parseInt(focus)
         var SiteName = password.find(item => item.Id === intfocus).SiteDescription;
-        this.state.EditTitle = SiteName;
+        var SiteLocation = password.find(item => item.Id === intfocus).SiteLocation;
+        var SitePass = password.find(item => item.Id === intfocus).PasswordHash;
+        this.setState({ EditTitle: SiteName });
+        this.setState({ EditDomain: SiteLocation });
+        this.setState({ EditPassword: SitePass });
     }
 
 
@@ -376,21 +395,17 @@ class Dashboard extends React.Component {
                     className="AddPasswordBox"
                     overlayClassName="PaswordBoxOverlay"
                     onRequestClose={this.onCloseEditO}>
-
-                    {/*
-                     Preload information into the fields
-                     */}
                     <div class="Addpasswordcontent">
                         <h1>Edit Password - {this.state.EditTitle}</h1>
                         <p>Label</p>
                         <p id="ELfeedback" className="error"></p>
-                        <input id="Elabel" type="text" />
+                        <input id="Elabel" type="text" value={this.state.EditTitle} onChange={this.state.handleChangeLabel} />
                         <p>Domane</p>
                         <p id="EDfeedback" className="error"></p>
-                        <input id="Edomane" type="text" />
+                        <input id="Edomane" type="text" value={this.state.EditDomain} onChange={this.state.handleChangeDomain} />
                         <p>Custom password (Optional)</p>
                         <p id="ECfeedback" className="error"></p>
-                        <input id="Ecustompass" type="password" />
+                        <input id="Ecustompass" type="password" value={this.state.EditPassword} onChange={this.state.handleChangeCPass} />
                         <button onClick={this.onCloseEdit}>Save Changes</button>
                     </div>
                 </ReactModal>
