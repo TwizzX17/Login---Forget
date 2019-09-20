@@ -66,6 +66,11 @@ namespace SecureMe_React.Controllers
                     PassInfo.UserId = Convert.ToInt32(NameId);
                     PassInfo.GeneratedOn = DateTime.Now;
 
+                    if (PassInfo.PasswordHash == "")
+                    {
+                        PassInfo.PasswordHash = Methods.SecretSegmenter.Segmenter();
+                    }
+
                     //Add PassInfo to database
                     _context.Add(PassInfo);
                     _context.SaveChanges();

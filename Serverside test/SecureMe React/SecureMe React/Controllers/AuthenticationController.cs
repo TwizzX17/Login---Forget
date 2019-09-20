@@ -11,7 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using SecureMeShared.Models;
 using SecureMeShared;
 using Microsoft.EntityFrameworkCore;
-using SecureMe_React.ViewModels;
+using SecureMe_React.Methods;
 
 namespace SecureMe_React.Controllers
 {
