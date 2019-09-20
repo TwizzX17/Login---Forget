@@ -54,6 +54,7 @@ class Login extends React.Component {
                 .then(response => response.json())
                 .then((response) => {
                     console.log(response)
+                    this.props.history.replace('/login');
                 });
 
         }

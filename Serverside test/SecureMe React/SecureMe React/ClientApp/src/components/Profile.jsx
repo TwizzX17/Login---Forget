@@ -42,7 +42,7 @@ class Login extends React.Component {
         }).then((response) => {
             //Delivers the response to the state as a array
             let info = response; //Get the results
-            this.setState({ Pemail: info.Email || "" });
+            //this.setState({ Pemail: info.Email || "" });
             this.setState({ Pfirstname: info.FirstName || "" });
             this.setState({ Plastname: info.LastName || "" });
             this.setState({ Pcountry: info.Country || "" });
@@ -183,7 +183,6 @@ class Login extends React.Component {
     //and all other lifecycle methods.
     onOpenAddPassword = () => {
         this.setState({ openP: true });
-        console.log(this.setState)
     }
 
     onCloseAddPasswordO = () => {
@@ -229,12 +228,12 @@ class Login extends React.Component {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${Auth.getToken()}`,
                 },
-                body: JSON.stringify({ label: lvalue, url: uvalue, custompass: cvalue }),
+                body: JSON.stringify({ SiteDescription: lvalue, SiteLocation: uvalue, PasswordHash: cvalue }),
             })
                 //When the password has been sent, on success, we want refresh the passwords form the database to get updated
                 .then(response => response.json()) // response.json() returns a promise
                 .then((response) => {
-                    console.log(response)
+                    console.log(response)                    
                 });
         }
     }

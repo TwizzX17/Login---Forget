@@ -30,7 +30,7 @@ class ForgotPass extends React.Component {
                     "Accept": "application/json",
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ Id: 0, Email: Email, MasterPass: "NibbaPassword" }),
+                body: JSON.stringify({ Id: 0, Email: Email, MasterPass: "DummyPassword" }),
             }).then(this._checkStatus)
                 .then(
                     response => response.json(),
