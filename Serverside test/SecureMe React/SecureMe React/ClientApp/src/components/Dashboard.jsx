@@ -221,8 +221,6 @@ class Dashboard extends React.Component {
         this.setState({ openE: true });
         this.setState({ focus: focusid });
         this.showPassName(focusid);
-
-
     }
 
     handleChangeLabel = (event) => {
