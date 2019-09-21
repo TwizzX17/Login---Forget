@@ -290,7 +290,7 @@ button, input, div {
     border: solid 1px #3a3b43;
     background-color: #454650;
     color: #bcbccb;
-    margin-right: 358px;
+    margin-right: 305px;
     padding-left: 5px;
     margin-left: 7px;
 }
@@ -305,9 +305,9 @@ button, input, div {
     background: #4f515d;
     margin-right: auto;
     margin-left: auto;
-    top: 15px;
-    right: 0;
-    left: 0;
+    top:215px;
+    right: 55%;
+    left: 45%;
     border: 3px solid #2f3037;
     border-radius: 5px;
 }
@@ -516,8 +516,25 @@ button, input, div {
 }
 
 #formsandtitles {
-    margin-left: 26px;
-    margin-right: 26px;
+      margin-left: 26px;
+      margin-right: 26px;
+  }
+
+    #formsandtitles h1 {
+        margin: 5px 0 5px 0;
+        height: 16px;
+    }
+
+    #formsandtitles input[type="text"], input[type="password"] {
+        margin: 7px 0 5px 0;
+    }
+
+#formsandtitles p{
+    display: block;
+    margin-top: 0;
+    margin-bottom: 2px;
+    font-size: 12px;
+    height:13px;
 }
 
 .formtitles {
@@ -784,7 +801,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
         height: 90px;
         width: 90px;
     }
-
+    
 #banner {
     height: 417px;
     width: 100%;

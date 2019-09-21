@@ -2,20 +2,20 @@
 import logo from '../assets/Logo.svg';
 import { Link } from 'react-router-dom';
 
-class ForgotPass extends React.Component {
+class NewPass extends React.Component {
     constructor() {
         super();
         this.state = {
-            CreateEmail: "",
+            NewPass: "",
 
         };
     }
 
     SubmitInput = () => {
-        const Email = document.getElementById("Email").value;
+        const Pass = document.getElementById("NewPass").value;
         let valid = 0;
 
-        if (Email.length === null) {
+        if (Pass.length === null) {
             const errorphrase = "Email field cannot be empty";
             valid = 1;
         } else {
@@ -24,24 +24,19 @@ class ForgotPass extends React.Component {
 
         if (valid === 0) {
 
-            fetch('/ForgotPassword/ForgotPassword', {
+            fetch('/ForgotPassword/Forgot', {
                 method: "POST",
                 headers: {
-                    "Accept": "application/json",
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ Id: 0, Email: Email, MasterPass: "DummyPassword" }),
+                body: JSON.stringify({ Id: 0, Email: "", MasterPass: Pass }),
             }).then(this._checkStatus)
                 .then(
                     response => response.json(),
-                    error => {
-                        alert(error) //catching the error
-                    }
+                    error => alert(error)
                 )
                 .then((response) => {
                     console.log(response)
-                    this.props.history.replace('/forgot-pass/NewPass')
-                    return Promise.resolve(response);
                 });
 
         }
@@ -72,9 +67,9 @@ class ForgotPass extends React.Component {
                             <div id="boxtitle">Recover Password</div>
                             <div class="formtitles formtitles1"></div>
                             <div id="formsandtitles">
-                                <div class="formtitles">E-mail</div>
-                                <input id="Email" class="loginforms" type="text" />
-                            <input onClick={this.SubmitInput} className="loginsubmit Createsubmit" type="submit" value="Login" />
+                                <div class="formtitles">Enter new password</div>
+                                <input id="NewPass" class="loginforms" type="text" />
+                                <input onClick={this.SubmitInput} className="loginsubmit Createsubmit" type="submit" value="Change Password" />
                             </div>
 
                         </div>
@@ -84,4 +79,4 @@ class ForgotPass extends React.Component {
             );
     }
 }
-export default ForgotPass
+export default NewPass

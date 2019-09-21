@@ -18,15 +18,6 @@ namespace SecureMe_React.Controllers
             _context = new DBInitCoreContext();
         }
 
-
-        //public ActionResult Login()
-        //{
-        //    var viewModel = new Login();
-        //    viewModel.Init(_context);
-
-        //    return View(viewModel);
-        //}
-
         public User UserLogin(string Mail, string Pass)
         {
             var UserInformation = _context.Users

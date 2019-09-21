@@ -27,12 +27,26 @@ namespace SecureMe_React.Controllers
         //API Accepts data from the user to add a password to the collection
         [AllowAnonymous]
         [HttpPost("[action]")]
-        public IActionResult AddUser([FromBody]User UserInfo)
+        public IActionResult AddUser([FromBody]User user)
         {
             try
             {
                 //Add PassInfo to database
-                _context.Add(UserInfo);
+                _context.Add(user);
+                _context.SaveChanges();
+
+                //Create empty UserInfo entry
+
+                   var userInfoId = _context.Users
+                        .Where(u => u.Id == user.Id)
+                        .SingleOrDefault();
+
+                var newinfo = new UserInfo()
+                {
+                    UserId = userInfoId.Id
+                };
+
+                _context.Add(newinfo);
                 _context.SaveChanges();
 
                 //We need confirmation from the database, that the information has been saved successfully
