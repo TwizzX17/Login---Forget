@@ -2,7 +2,7 @@
 import logo from '../assets/Logo.svg';
 import { Link } from 'react-router-dom';
 
-class Login extends React.Component {
+class CreateAccount extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -98,4 +98,4 @@ class Login extends React.Component {
             );
     }
 }
-export default Login
+export default CreateAccount
