@@ -228,11 +228,11 @@ class Dashboard extends React.Component {
     }
 
     handleChangeDomain = (event) => {
-        this.setState({ EditTitle: event.target.value });
+        this.setState({ EditDomain: event.target.value });
     }
 
     handleChangeCPass = (event) => {
-        this.setState({ EditTitle: event.target.value });
+        this.setState({ EditPassword: event.target.value });
     }
 
     onCloseEditO = () => {
@@ -397,13 +397,13 @@ class Dashboard extends React.Component {
                         <h1>Edit Password - {this.state.EditTitle}</h1>
                         <p>Label</p>
                         <p id="ELfeedback" className="error"></p>
-                        <input id="Elabel" type="text" value={this.state.EditTitle} onChange={this.state.handleChangeLabel} />
+                        <input id="Elabel" type="text" value={this.state.EditTitle} onChange={this.handleChangeLabel} />
                         <p>Domane</p>
                         <p id="EDfeedback" className="error"></p>
-                        <input id="Edomane" type="text" value={this.state.EditDomain} onChange={this.state.handleChangeDomain} />
+                        <input id="Edomane" type="text" value={this.state.EditDomain} onChange={this.handleChangeDomain} />
                         <p>Custom password (Optional)</p>
                         <p id="ECfeedback" className="error"></p>
-                        <input id="Ecustompass" type="password" value={this.state.EditPassword} onChange={this.state.handleChangeCPass} />
+                        <input id="Ecustompass" type="password" value={this.state.EditPassword} onChange={this.handleChangeCPass} />
                         <button onClick={this.onCloseEdit}>Save Changes</button>
                     </div>
                 </ReactModal>
